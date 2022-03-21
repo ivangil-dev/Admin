@@ -1,5 +1,7 @@
 # Ghost-Admin
 
+Fork traducción al Español
+
 ![](https://github.com/TryGhost/Admin/workflows/Test%20Suite/badge.svg?branch=main)
 
 This is the home of Ember.js based admin client that ships with [Ghost](https://github.com/tryghost/ghost).
