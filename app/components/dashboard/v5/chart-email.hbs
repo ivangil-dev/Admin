@@ -1,0 +1,30 @@
+<h3 {{did-insert this.loadCharts}}>Email</h3>
+<div class="gh-dashboard5-insert">
+    <div class="gh-dashboard5-box">
+        <div class="gh-dashboard5-number is-solo">
+            {{format-number this.dataSubscribers.total}}<small><span class="gh-dashboard5-slash">/</span>{{format-number this.dataSubscribers.paid}} paid</small>
+        </div>
+        <small class="gh-dashboard5-info">Newsletter subscribers</small>
+    </div>
+
+    <div class="gh-dashboard5-box">
+        <div class="gh-dashboard5-number is-solo">{{format-number this.dataEmailsSent}}</div>
+        <small class="gh-dashboard5-info">Sent in the past 30 days</small>
+    </div>
+
+    <div class="gh-dashboard5-box">
+        {{#if this.loading}}
+            <div class="gh-dashboard5-loading" style={{html-safe (concat "height: " this.chartHeight "px;")}}/>
+        {{else}}
+            <EmberChart
+                @type={{this.chartType}}
+                @data={{this.chartData}}
+                @options={{this.chartOptions}}
+                @height={{130}} />
+        {{/if}}
+        <div>
+            <div class="gh-dashboard5-number">{{this.currentOpenRate}}%</div>
+            <small class="gh-dashboard5-info">Open rate</small>
+        </div>
+    </div>
+</div>

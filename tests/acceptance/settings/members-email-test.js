@@ -1,5 +1,5 @@
 import {authenticateSession} from 'ember-simple-auth/test-support';
-import {click, find} from '@ember/test-helpers';
+import {click, currentURL, find} from '@ember/test-helpers';
 import {expect} from 'chai';
 import {setupApplicationTest} from 'ember-mocha';
 import {setupMirage} from 'ember-cli-mirage/test-support';
@@ -16,6 +16,11 @@ describe('Acceptance: Settings - Members email', function () {
         this.server.create('user', {roles: [role]});
 
         return await authenticateSession();
+    });
+
+    it('loads non-labs route', async function () {
+        await visit('/settings/members-email');
+        expect(currentURL()).to.equal('/settings/members-email');
     });
 
     it('can manage open rate tracking', async function () {

@@ -1,0 +1,16 @@
+<small
+    class="gh-dashboard5-info is-solo"
+    {{did-insert this.loadCharts}}
+>Paid members</small>
+
+{{#if this.loading}}
+    <div class="gh-dashboard5-loading" style={{html-safe (concat "height: " this.chartHeight "px;")}}/>
+{{else}}
+    <div class="gh-dashboard5-chart">
+        <EmberChart
+            @type={{this.chartType}}
+            @data={{this.chartData}}
+            @options={{this.chartOptions}}
+            @height={{150}} />
+    </div>
+{{/if}}

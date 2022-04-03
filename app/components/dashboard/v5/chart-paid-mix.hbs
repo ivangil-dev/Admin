@@ -1,0 +1,35 @@
+
+{{#if this.hasMultipleTiers }}
+    <div class="prototype-paid-mix-dropdown">
+        <PowerSelect
+            @selected={{this.selectedModeOption}}
+            @options={{this.modeOptions}}
+            @searchEnabled={{false}}
+            @onChange={{this.onSwitchMode}}
+            @triggerComponent="gh-power-select/trigger"
+            @triggerClass="gh-contentfilter-menu-trigger"
+            @dropdownClass="gh-contentfilter-menu-dropdown"
+            @matchTriggerWidth={{false}}
+            as |option|
+        >
+            {{#if option.name}}{{option.name}}{{else}}<span class="red">Unknown option</span>{{/if}}
+        </PowerSelect>
+    </div>
+{{/if}}
+
+<small
+    class="gh-dashboard5-info is-solo"
+    {{did-insert this.loadCharts}}
+>Paid mix</small>
+
+{{#if this.loading}}
+    <div class="gh-dashboard5-loading" style={{html-safe (concat "height: " this.chartHeight "px;")}}/>
+{{else}}
+    <div class="gh-dashboard5-chart">
+        <EmberChart
+            @type={{this.chartType}}
+            @data={{this.chartData}}
+            @options={{this.chartOptions}}
+            @height={{150}} />
+    </div>
+{{/if}}

@@ -3,11 +3,16 @@ import {action} from '@ember/object';
 import {inject as service} from '@ember/service';
 
 export default class MembersEmailRoute extends AdminRoute {
+    @service feature;
     @service notifications;
     @service settings;
 
     beforeModel(transition) {
         super.beforeModel(...arguments);
+
+        if (this.feature.multipleNewsletters) {
+            return this.transitionTo('settings.members-email-labs');
+        }
 
         if (transition.to.queryParams?.fromAddressUpdate === 'success') {
             this.notifications.showAlert(
@@ -32,7 +37,7 @@ export default class MembersEmailRoute extends AdminRoute {
 
     buildRouteInfoMetadata() {
         return {
-            titleToken: 'Settings - Members'
+            titleToken: 'Settings - Email newsletter'
         };
     }
 }

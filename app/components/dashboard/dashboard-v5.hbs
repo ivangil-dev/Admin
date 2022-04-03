@@ -1,0 +1,126 @@
+<section {{did-insert this.onInsert}}>
+    {{#if this.isLoading }}
+        <GhLoadingSpinner />
+    {{else}}
+        {{#if this.areMembersEnabled}}
+            <section class="gh-dashboard5-section gh-dashboard5-anchor">
+                <article class="gh-dashboard5-box">
+                    <Dashboard::V5::ChartAnchor @days={{this.days}} />
+                </article>
+                <div class="prototype-selection">
+                    <PowerSelect
+                        @selected={{this.selectedDaysOption}}
+                        @options={{this.daysOptions}}
+                        @searchEnabled={{false}}
+                        @onChange={{this.onDaysChange}}
+                        @triggerComponent="gh-power-select/trigger"
+                        @triggerClass="gh-contentfilter-menu-trigger"
+                        @dropdownClass="gh-contentfilter-menu-dropdown"
+                        @matchTriggerWidth={{false}}
+                        as |option|
+                    >
+                        {{#if option.name}}{{option.name}}{{else}}<span class="red">Unknown option</span>{{/if}}
+                    </PowerSelect>
+                </div>
+            </section>
+
+            {{#if this.hasPaidTiers}}
+                <div class="gh-dashboard5-paid">
+                    <section class="gh-dashboard5-section">
+                        <div class="gh-dashboard5-growth">             
+                            <article class="gh-dashboard5-box">
+                                <Dashboard::V5::ChartPaidMembers @days={{this.days}}/>
+                            </article>
+
+                            <article class="gh-dashboard5-box">
+                                <Dashboard::V5::ChartPaidMix />
+                            </article>
+                        </div>
+                    </section>
+                </div>
+            {{/if}}
+
+            {{#if this.areNewslettersEnabled}}
+                <section class="gh-dashboard5-split is-third">
+                    <section class="gh-dashboard5-section gh-dashboard5-email">
+                        <article class="gh-dashboard5-box">
+                            <Dashboard::V5::ChartEmail />
+                        </article>
+                    </section>
+
+                    <section class="gh-dashboard5-section gh-dashboard5-engagement">
+                        <Dashboard::V5::ChartEngagement />
+                    </section>
+                </section> 
+            {{else}}
+                <section class="gh-dashboard5-section gh-dashboard5-engagement">
+                    <Dashboard::V5::ChartEngagement />
+                </section>
+            {{/if}}
+
+        {{else}}
+            {{#if this.areNewslettersEnabled}}
+                <section class="gh-dashboard5-section gh-dashboard5-email">
+                    <article class="gh-dashboard5-box">
+                        <Dashboard::V5::ChartEmail />
+                    </article>
+                </section>
+            {{/if}}
+        {{/if}}
+
+        <section class="gh-dashboard5-split">
+            <section class="gh-dashboard5-section gh-dashboard5-posts">
+                <article class="gh-dashboard5-box">
+                    <Dashboard::V5::RecentPosts />
+                </article>
+            </section>
+
+            <section class="gh-dashboard5-section gh-dashboard5-activity">
+                <Dashboard::V5::RecentActivity />
+            </section>
+        </section>
+
+        <section class="gh-dashboard5-section">
+            <div class="gh-main-section gh-offers-help">
+                <div class="gh-main-section-block">
+                    <div class="gh-main-section-content grey">
+                        <a href="https://ghost.org/help" target="_blank" class="gh-offers-help-card" rel="noopener noreferrer">
+                            <div class="gh-offers-help-content">
+                                <div class="thumbnail" style="background-image: url(assets/img/marketing/offers-1.jpg);"></div>
+                                <div class="text">
+                                    <h3>Do something cool in Ghost</h3>
+                                    <p>There is a lot of cool things you can do in Ghost and this is just one of them.</p>
+                                </div>
+                            </div>
+                            <div class="gh-btn"><span>Read more</span></div>
+                        </a>
+
+                        <a href="https://ghost.org/help" target="_blank" class="gh-offers-help-card" rel="noopener noreferrer">
+                            <div class="gh-offers-help-content">
+                                <div class="thumbnail" style="background-image: url(assets/img/marketing/offers-3.jpg);"></div>
+                                <div class="text">
+                                    <h3>Do something cool in Ghost</h3>
+                                    <p>There is a lot of cool things you can do in Ghost and this is just one of them.</p>
+                                </div>
+                            </div>
+                            <div class="gh-btn"><span>Read more</span></div>
+                        </a>
+
+                        <a href="https://ghost.org/help" target="_blank" class="gh-offers-help-card" rel="noopener noreferrer">
+                            <div class="gh-offers-help-content">
+                                <div class="thumbnail" style="background-image: url(assets/img/marketing/offers-2.jpg)"></div>
+                                <div class="text">
+                                    <h3>Do something cool in Ghost</h3>
+                                    <p>There is a lot of cool things you can do in Ghost and this is just one of them.</p>
+                                </div>
+                            </div>
+                            <div class="gh-btn"><span>Read more</span></div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    {{/if}}
+    <Dashboard::V5::PrototypeControlPanel />
+</section>
