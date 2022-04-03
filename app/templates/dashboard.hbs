@@ -66,11 +66,11 @@
                 <div class="gh-dashboard-container col-2">
                     <div class="gh-dashboard-box">
                         <div class="content">
-                            <h2>Customize your site</h2>
-                            <p>Stand out from the crowd. Ghost lets you customize everything so you can create a publication that doesn’t just look the same as what everyone else has.</p>
+                            <h2>Personaliza tu sitio</h2>
+                            <p>Destacarse de la multitud.Ghost le permite personalizar todo por lo que puede crear una publicación que no solo se vea igual que a todos los demás.</p>
                         </div>
                         <div class="footer">
-                            <LinkTo class="gh-btn gh-btn-outline mt2 mr2" @route="settings.design"><span>Design</span></LinkTo>
+                            <LinkTo class="gh-btn gh-btn-outline mt2 mr2" @route="settings.design"><span>Diseño</span></LinkTo>
                             <LinkTo class="gh-btn gh-btn-outline mt2" @route="settings.members-email"><span>Email</span></LinkTo>
                         </div>
                     </div>
@@ -89,10 +89,10 @@
                 <a class="gh-dashboard-container" href="https://ghost.org/blog/types-of-newsletters/?utm_source=dashboard" target="_blank" rel="noopener noreferrer">
                     <div class="gh-dashboard-box blogpost">
                         <div class="content">
-                            <h2>6 types of newsletters you can start today</h2>
-                            <p>Choosing one of these newsletter types for your publication will help you create better content at a faster pace with less work.</p>
-                            <p class="green">Get some inspiration &rarr;</p>
-                            <div class="read-time">5 MIN READ</div>
+                            <h2>6 tipos de boletines que puedes comenzar hoy</h2>
+                            <p>Elegir uno de estos tipos de boletines para su publicación lo ayudará a crear un mejor contenido a un ritmo más rápido con menos trabajo.</p>
+                            <p class="green">Conseguir algo de inspiración &rarr;</p>
+                            <div class="read-time">5 MIN LECTURA</div>
                         </div>
                         <div class="thumbnail" style="background-image: url(assets/img/dashboard/bp1.jpg);"></div>
                     </div>
@@ -140,7 +140,7 @@
                 {{#if (not (or this.whatsNewEntriesLoading this.whatsNewEntriesError))}}
                 <div class="gh-dashboard-box whats-new {{if this.whatsNew.hasNew "has-new"}}">
                     <div class="gh-dashboard-header-container">
-                        <h4 class="gh-dashboard-header">What's new?</h4>
+                        <h4 class="gh-dashboard-header">¿Qué hay de nuevo?</h4>
                         {{svg-jar "gift"}}
                     </div>
                     <div class="content">
@@ -155,7 +155,7 @@
                         {{/each}}
                     </div>
                     <div class="footer">
-                        <LinkTo @route="whatsnew" @query={{hash entry=null}} class="green">See more &rarr;</LinkTo>
+                        <LinkTo @route="whatsnew" @query={{hash entry=null}} class="green">Ver más &rarr;</LinkTo>
                     </div>
                 </div>
                 {{/if}}
