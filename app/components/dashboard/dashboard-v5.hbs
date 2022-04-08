@@ -7,7 +7,7 @@
                 <article class="gh-dashboard5-box">
                     <Dashboard::V5::ChartAnchor @days={{this.days}} />
                 </article>
-                <div class="prototype-selection">
+                <div id="gh-dashboard5-anchor-selection" class="prototype-selection">
                     <PowerSelect
                         @selected={{this.selectedDaysOption}}
                         @options={{this.daysOptions}}
@@ -21,6 +21,9 @@
                     >
                         {{#if option.name}}{{option.name}}{{else}}<span class="red">Unknown option</span>{{/if}}
                     </PowerSelect>
+                </div>
+                <div id="gh-dashboard5-anchor-globaldate">
+                    March 31, 2022
                 </div>
             </section>
 
@@ -42,14 +45,14 @@
 
             {{#if this.areNewslettersEnabled}}
                 <section class="gh-dashboard5-split is-third">
+                    <section class="gh-dashboard5-section gh-dashboard5-engagement">
+                        <Dashboard::V5::ChartEngagement />
+                    </section>
+
                     <section class="gh-dashboard5-section gh-dashboard5-email">
                         <article class="gh-dashboard5-box">
                             <Dashboard::V5::ChartEmail />
                         </article>
-                    </section>
-
-                    <section class="gh-dashboard5-section gh-dashboard5-engagement">
-                        <Dashboard::V5::ChartEngagement />
                     </section>
                 </section> 
             {{else}}
@@ -76,51 +79,21 @@
             </section>
 
             <section class="gh-dashboard5-section gh-dashboard5-activity">
-                <Dashboard::V5::RecentActivity />
+                <article class="gh-dashboard5-box">
+                    <Dashboard::V5::RecentActivity />
+                </article>
             </section>
         </section>
 
         <section class="gh-dashboard5-section">
-            <div class="gh-main-section gh-offers-help">
-                <div class="gh-main-section-block">
-                    <div class="gh-main-section-content grey">
-                        <a href="https://ghost.org/help" target="_blank" class="gh-offers-help-card" rel="noopener noreferrer">
-                            <div class="gh-offers-help-content">
-                                <div class="thumbnail" style="background-image: url(assets/img/marketing/offers-1.jpg);"></div>
-                                <div class="text">
-                                    <h3>Do something cool in Ghost</h3>
-                                    <p>There is a lot of cool things you can do in Ghost and this is just one of them.</p>
-                                </div>
-                            </div>
-                            <div class="gh-btn"><span>Read more</span></div>
-                        </a>
-
-                        <a href="https://ghost.org/help" target="_blank" class="gh-offers-help-card" rel="noopener noreferrer">
-                            <div class="gh-offers-help-content">
-                                <div class="thumbnail" style="background-image: url(assets/img/marketing/offers-3.jpg);"></div>
-                                <div class="text">
-                                    <h3>Do something cool in Ghost</h3>
-                                    <p>There is a lot of cool things you can do in Ghost and this is just one of them.</p>
-                                </div>
-                            </div>
-                            <div class="gh-btn"><span>Read more</span></div>
-                        </a>
-
-                        <a href="https://ghost.org/help" target="_blank" class="gh-offers-help-card" rel="noopener noreferrer">
-                            <div class="gh-offers-help-content">
-                                <div class="thumbnail" style="background-image: url(assets/img/marketing/offers-2.jpg)"></div>
-                                <div class="text">
-                                    <h3>Do something cool in Ghost</h3>
-                                    <p>There is a lot of cool things you can do in Ghost and this is just one of them.</p>
-                                </div>
-                            </div>
-                            <div class="gh-btn"><span>Read more</span></div>
-                        </a>
-
-                    </div>
-                </div>
-            </div>
+            <Dashboard::V5::ResourceGeneral />
         </section>
+        
+        <Dashboard::V5::Resources::WhatsNew />
+        <Dashboard::V5::Resources::LatestNewsletters />
+        <article class="gh-dashboard5-box">
+            <Dashboard::V5::Resources::StaffPicks />
+        </article>
     {{/if}}
     <Dashboard::V5::PrototypeControlPanel />
 </section>
