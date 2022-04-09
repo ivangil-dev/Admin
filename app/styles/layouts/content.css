@@ -122,7 +122,7 @@
 }
 
 .gh-contentfilter-sort .gh-contentfilter-menu-trigger .ember-power-select-selected-item::before {
-    content: "Sort by: ";
+    content: "Ordenar por: ";
 }
 
 .gh-contentfilter-actions svg {
