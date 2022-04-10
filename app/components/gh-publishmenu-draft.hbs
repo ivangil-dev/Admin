@@ -1,5 +1,5 @@
 <div ...attributes>
-    <header class="gh-publishmenu-heading" data-test-publishmenu-header>Ready to
+    <header class="gh-publishmenu-heading" data-test-publishmenu-header>Listo para
         {{#if @canSendEmail}}
             <GhDistributionActionSelect
                 @distributionAction={{@distributionAction}}
@@ -7,23 +7,23 @@
                 data-test-distribution-action-select
             />
         {{else}}
-            publish
+            publicar
         {{/if}}
-        this {{@post.displayName}}?
+        esta publicación?
     </header>
     <section class="gh-publishmenu-content {{if this.disableEmailOption "no-border"}}">
         <div class="gh-publishmenu-section">
             <div class="gh-publishmenu-radio {{if (eq @saveType "publish") "active"}}" {{on "click" (fn this.setSaveType "publish")}}>
                 <div class="gh-publishmenu-radio-button" data-test-publishmenu-published-option></div>
                 <div class="gh-publishmenu-radio-content">
-                    <div class="gh-publishmenu-radio-label">{{#if @emailOnly}}Send email now{{else}}Set it live now{{/if}}</div>
-                    <div class="gh-publishmenu-radio-desc">{{#if @emailOnly}}Deliver this immediately{{else}}Publish this {{@post.displayName}} immediately{{/if}}</div>
+                    <div class="gh-publishmenu-radio-label">{{#if @emailOnly}}Enviar correo electrónico ahora{{else}}Publicarlo ahora mismo{{/if}}</div>
+                    <div class="gh-publishmenu-radio-desc">{{#if @emailOnly}}Entregar esto inmediatamente{{else}}Publicar esta publicación inmediatamente{{/if}}</div>
                 </div>
             </div>
             <div class="gh-publishmenu-radio {{if (eq @saveType "schedule") "active"}}" {{on "click" (fn this.setSaveType "schedule")}}>
                 <div class="gh-publishmenu-radio-button" data-test-publishmenu-scheduled-option></div>
                 <div class="gh-publishmenu-radio-content">
-                    <div class="gh-publishmenu-radio-label">Schedule it for later</div>
+                    <div class="gh-publishmenu-radio-label">Programarlo para más tarde</div>
                     <GhDateTimePicker
                         @date={{@post.publishedAtBlogDate}}
                         @time={{@post.publishedAtBlogTime}}
@@ -38,7 +38,7 @@
                         @minDate={{this._minDate}}
                         @isActive={{eq @saveType "schedule"}}
                     />
-                    <div class="gh-publishmenu-radio-desc">{{#if @emailOnly}}Send email at a specific time{{else}}Set automatic future publish date{{/if}}</div>
+                    <div class="gh-publishmenu-radio-desc">{{#if @emailOnly}}Enviar correo electrónico en un momento específico{{else}}Establecer la fecha de publicación futura automática{{/if}}</div>
                 </div>
             </div>
         </div>
@@ -50,20 +50,20 @@
                         <p class="gh-box gh-box-alert">{{html-safe @sendingEmailLimitError}}</p>
                     {{else}}
                         <div class="gh-publishmenu-email-label">
-                            <label class="gh-publishmenu-radio-label mb3">Send by email to</label>
+                            <label class="gh-publishmenu-radio-label mb3">Enviar por email a</label>
 
                             {{#if this.disableEmailOption}}
                                 <p class="gh-box gh-content-box">
                                     <LinkTo @route="members">
-                                        Add members
+                                        Añade usuarios
                                     </LinkTo>
-                                    to start sending newsletters!
+                                    para comenzar a enviar boletines!
                                 </p>
                             {{else}}
                                 <div class="form-group">
                                     {{#if (and (feature "multipleNewsletters") (gt @availableNewsletters.length 1))}}
                                         <div class="mb3">
-                                            <p>Newsletter</p>
+                                            <p>Boletín</p>
                                             <PowerSelect
                                                 @selected={{@selectedNewsletter}}
                                                 @options={{@availableNewsletters}}

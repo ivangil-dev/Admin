@@ -1,6 +1,6 @@
 <div class="gh-dashboard5-list" {{did-insert this.loadPosts}}>
     <div class="gh-dashboard5-list-header">
-        <Dashboard::v5::parts::ChartMetric @label="Recent posts" />
+        <Dashboard::v5::parts::ChartMetric @label="Publicaciones recientes" />
     </div>
     <div class="gh-dashboard5-list-body">
         {{#each this.posts as |post|}}
@@ -12,11 +12,11 @@
         {{else}}
             <div class="gh-dashboard5-list-empty">
                 {{svg-jar "no-data-list"}}
-                <p>No published posts yet.</p>
+                <p>No se ha publicado contenido todavía.</p>
             </div>
         {{/each}}
     </div>
     <div class="gh-dashboard5-list-footer">
-        <LinkTo @route="posts" @query={{reset-query-params "posts"}}>See all posts →</LinkTo>
+        <LinkTo @route="posts" @query={{reset-query-params "posts"}}>Ver todas las publicaciones →</LinkTo>
     </div>
 </div>

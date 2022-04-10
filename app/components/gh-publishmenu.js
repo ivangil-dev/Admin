@@ -88,18 +88,18 @@ export default Component.extend({
         let runningText;
 
         if (postState === 'draft') {
-            runningText = saveType === 'publish' ? 'Publishing' : 'Scheduling';
+            runningText = saveType === 'publish' ? 'Publicando' : 'Programando';
         }
 
         if (postState === 'published') {
-            runningText = saveType === 'publish' ? 'Updating' : 'Unpublishing';
+            runningText = saveType === 'publish' ? 'Actualizando' : 'Despublicando';
         }
 
         if (postState === 'scheduled') {
-            runningText = saveType === 'schedule' ? 'Rescheduling' : 'Unscheduling';
+            runningText = saveType === 'schedule' ? 'Reprogramando' : 'Desprogramando';
         }
 
-        return runningText || 'Publishing';
+        return runningText || 'Publicando';
     }),
 
     buttonText: computed('postState', 'saveType', 'distributionAction', 'sendEmailWhenPublished', function () {
@@ -112,33 +112,33 @@ export default Component.extend({
             switch (distributionAction) {
             case 'publish_send':
                 if (saveType === 'publish') {
-                    buttonText = 'Publish';
+                    buttonText = 'Publicar';
 
                     if (this.canSendEmail && this.sendEmailWhenPublished && this.sendEmailWhenPublished !== 'none') {
-                        buttonText = `${buttonText} & send`;
+                        buttonText = `${buttonText} y enviar`;
                     }
                 } else {
-                    buttonText = 'Schedule';
+                    buttonText = 'Programar';
                 }
                 break;
             case 'publish':
-                buttonText = (saveType === 'publish') ? 'Publish' : 'Schedule';
+                buttonText = (saveType === 'publish') ? 'Publicar' : 'Programar';
                 break;
             case 'send':
-                buttonText = saveType === 'publish' ? 'Send' : 'Schedule';
+                buttonText = saveType === 'publish' ? 'Enviar' : 'Programar';
                 break;
             }
         }
 
         if (postState === 'published') {
-            buttonText = saveType === 'publish' ? 'Update' : 'Unpublish';
+            buttonText = saveType === 'publish' ? 'Actualizar' : 'Despublicar';
         }
 
         if (postState === 'scheduled') {
-            buttonText = saveType === 'schedule' ? 'Reschedule' : 'Unschedule';
+            buttonText = saveType === 'schedule' ? 'Reprogramar' : 'Desprogramar';
         }
 
-        return buttonText || 'Publish';
+        return buttonText || 'Publicar';
     }),
 
     successText: computed('_previousStatus', 'postState', function () {
@@ -147,15 +147,15 @@ export default Component.extend({
         let buttonText;
 
         if (previousStatus === 'draft') {
-            buttonText = postState === 'published' ? 'Published' : 'Scheduled';
+            buttonText = postState === 'published' ? 'Publicado' : 'Programado';
         }
 
         if (previousStatus === 'published') {
-            buttonText = postState === 'draft' ? 'Unpublished' : 'Updated';
+            buttonText = postState === 'draft' ? 'Borrador' : 'Actualizado';
         }
 
         if (previousStatus === 'scheduled') {
-            buttonText = postState === 'draft' ? 'Unscheduled' : 'Rescheduled';
+            buttonText = postState === 'draft' ? 'No programado' : 'Reprogramado';
         }
 
         return buttonText;
@@ -351,7 +351,7 @@ export default Component.extend({
                 yield this.limit.limiter.errorIfWouldGoOverLimit('emails');
             } else if (this.settings.get('emailVerificationRequired')) {
                 this.set('isSendingEmailLimited', true);
-                this.set('sendingEmailLimitError', 'Email sending is temporarily disabled because your account is currently in review. You should have an email about this from us already, but you can also reach us any time at support@ghost.org.');
+                this.set('sendingEmailLimitError', 'El envío del correo electrónico está desactivado temporalmente porque su cuenta está actualmente en revisión. Ya debería tener un correo electrónico sobre esto de nosotros, pero también puede llegar a nosotros en cualquier momento en support@ghost.org.');
                 this.set('sendEmailWhenPublished', 'none');
                 return;
             }

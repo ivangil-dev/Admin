@@ -1,32 +1,32 @@
 <div data-test-editor-post-status ...attributes>
     {{#if this.isSaving}}
-        Saving...
+        Guardando...
     {{else if @post.isSent}}
-        Sent to {{gh-pluralize @post.email.emailCount "member"}}
+        Enviada a {{gh-pluralize @post.email.emailCount "member"}}
     {{else if (and @post.emailOnly @post.isScheduled)}}
         <time datetime="{{@post.publishedAtUTC}}" class="ml1 green f8" data-test-schedule-countdown>
-            Will be sent to <GhRecipientFilterCount @filter={{@post.emailRecipientFilter}} />
+            Será enviada a <GhRecipientFilterCount @filter={{@post.emailRecipientFilter}} />
             {{this.scheduledTime}}
         </time>
     {{else if (or @post.isPublished @post.pastScheduledTime)}}
-        Published
+        Publicada
         {{#if (or (eq @post.email.status "submitting") (eq @post.email.status "submitting"))}}
-            and sending to {{gh-pluralize @post.email.emailCount "member"}}
+            y envianda a {{gh-pluralize @post.email.emailCount "member"}}
         {{else if (eq @post.email.status "submitted")}}
-            and sent to {{gh-pluralize @post.email.emailCount "member"}}
+            y enviada a {{gh-pluralize @post.email.emailCount "member"}}
         {{/if}}
     {{else if @post.isScheduled}}
         <time datetime="{{@post.publishedAtUTC}}" class="ml1 green f8" data-test-schedule-countdown>
-            Will be published
+            Será publicada
             {{#if (and @post.emailRecipientFilter (not @post.email))}}
-                and sent to <GhRecipientFilterCount @filter={{@post.emailRecipientFilter}} />
+                y enviada a <GhRecipientFilterCount @filter={{@post.emailRecipientFilter}} />
             {{/if}}
             {{this.scheduledTime}}
         </time>
     {{else if @post.isNew}}
-        New
+        Nueva publicación
     {{else}}
-        Draft
-        {{unless @hasDirtyAttributes "- Saved"}}
+        Borrador
+        {{unless @hasDirtyAttributes "- Guardado"}}
     {{/if}}
 </div>

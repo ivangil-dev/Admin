@@ -1,10 +1,10 @@
 <section class="gh-canvas js-settings-content" {{scroll-top}}>
     <GhCanvasHeader class="gh-canvas-header">
-        <h2 class="gh-whats-new-heading">{{svg-jar "gift"}} What's new?</h2>
+        <h2 class="gh-whats-new-heading">{{svg-jar "gift"}} ¿Qué hay de nuevo?</h2>
         <div class="gh-about-header-actions">
-            <a class="gh-btn gh-btn-outline" href="https://ghost.org/docs/" target="_blank" rel="noopener noreferrer"><span>User documentation</span></a>
-            <a class="gh-btn gh-btn-outline" href="https://forum.ghost.org/" target="_blank" rel="noopener noreferrer"><span>Get help with Ghost</span></a>
-            <a class="gh-btn gh-btn-black" href="https://ghost.org/docs/contributing/" target="_blank" rel="noopener noreferrer"><span>Get involved</span></a>
+           <a class="gh-btn gh-btn-outline" href="https://ghost.org/docs/" target="_blank" rel="noopener noreferrer"><span>Documentación</span></a>
+            <a class="gh-btn gh-btn-outline" href="https://forum.ghost.org/" target="_blank" rel="noopener noreferrer"><span>Comunidad Ghost</span></a>
+            <a class="gh-btn gh-btn-black" href="mailto:soporte@ivangil.es?subject=Necesito%20ayuda%20con%20mi%20web%20de%20Ghost." target="_blank" rel="noopener noreferrer"><span>Soporte</span></a>
         </div>
     </GhCanvasHeader>
     <section class="view-container">
@@ -31,9 +31,9 @@
             </section>
 
             <div class="gh-about-content-actions">
-                <a class="gh-btn gh-btn-outline" href="https://ghost.org/docs/" target="_blank" rel="noopener noreferrer"><span>User documentation</span></a>
-                <a class="gh-btn gh-btn-outline" href="https://forum.ghost.org/" target="_blank" rel="noopener noreferrer"><span>Get help with Ghost</span></a>
-                <a class="gh-btn gh-btn-black" href="https://ghost.org/docs/contributing/" target="_blank" rel="noopener noreferrer"><span>Get involved</span></a>
+                <a class="gh-btn gh-btn-outline" href="https://ghost.org/docs/" target="_blank" rel="noopener noreferrer"><span>Documentación</span></a>
+                <a class="gh-btn gh-btn-outline" href="https://forum.ghost.org/" target="_blank" rel="noopener noreferrer"><span>Comunidad Ghost</span></a>
+                <a class="gh-btn gh-btn-black" href="mailto:soporte@ivangil.es?subject=Necesito%20ayuda%20con%20mi%20web%20de%20Ghost." target="_blank" rel="noopener noreferrer"><span>Soporte</span></a>
             </div>
 
             <section class="gh-env-details gh-about-box grey">
@@ -44,18 +44,19 @@
                 {{#if this.upgradeStatus.message}}
                     <section class="gh-upgrade-notification">
                         <p>
-                            <strong>Update available!</strong> {{this.upgradeStatus.message}}
+                            <strong>Actualización disponible!</strong> Una nueva versión de Ghost se ha liberado, <a href="mailto:soporte@ivangil.es?subject=Quiero%20actualizar%20mi%20web%20de%20Ghost.">contacta con tu programador</a> para actualizar.
                         </p>
                     </section>
                 {{/if}}
 
                 <ul class="gh-env-list">
-                    <li><strong>Version:</strong> {{this.config.version}}</li>
-                    <li><strong>Environment:</strong> <span class="ttc">{{this.config.environment}}</span></li>
-                    <li class="gh-env-list-database-type"><strong>Database:</strong> {{this.config.database}}</li>
-                    <li><strong>Mail:</strong> {{#if this.config.mail}}{{this.config.mail}}{{else}}Native{{/if}}</li>
+                    <li><strong>Versión:</strong> {{this.config.version}}</li>
+                    <li><strong>Entorno:</strong> <span class="ttc">{{this.config.environment}}</span></li>
+                    <li><strong>Programador asignado:</strong> Ivan Gil B.</li>
+                    <li class="gh-env-list-database-type"><strong>Base de datos:</strong> {{this.config.database}}</li>
+                    <li><strong>Email:</strong> {{#if this.config.mail}}{{this.config.mail}}{{else}}Nativo{{/if}}</li>
                     {{#if (enable-developer-experiments)}}
-                    <li><strong>Developer experiments:</strong> <span class="gh-badge">Enabled</span></li>
+                    <li><strong>Experimentos de desarrollador:</strong> <span class="gh-badge">Activados</span></li>
                     {{/if}}
                 </ul>
 

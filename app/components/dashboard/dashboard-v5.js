@@ -3,16 +3,16 @@ import {action} from '@ember/object';
 import {inject as service} from '@ember/service';
 
 const DAYS_OPTIONS = [{
-    name: '7 days',
+    name: '7 dias',
     value: 7
 }, {
-    name: '30 days',
+    name: '30 dias',
     value: 30
 }, {
-    name: '90 days',
+    name: '90 dias',
     value: 90
 }, {
-    name: 'All time',
+    name: 'Siempre',
     value: 'all'
 }];
 
@@ -54,7 +54,7 @@ export default class DashboardDashboardV5Component extends Component {
         return this.dashboardStats.siteStatus?.membersEnabled;
     }
 
-    @action 
+    @action
     onDaysChange(selected) {
         this.days = selected.value;
     }

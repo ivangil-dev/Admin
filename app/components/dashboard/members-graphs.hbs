@@ -1,21 +1,21 @@
 <section class="gh-dashboard-area charts" data-test-dashboard-members-graphs>
     <div class="gh-dashboard-box mrr">
         <div class="flex items-center justify-between">
-            <h4 class="gh-dashboard-header">MRR</h4>
-            <h4 class="gh-dashboard-header secondary">30 days</h4>
+            <h4 class="gh-dashboard-header">Ingresos Recurrentes Mensuales (MRR)</h4>
+            <h4 class="gh-dashboard-header secondary">30 dias</h4>
         </div>
         <div class="gh-dashboard-chart-container">
             {{#if this.mrrStatsLoading}}
-                Loading...
+                Cargando...
             {{else}}
                 {{#if this.mrrStatsError}}
                     <p class="error">
-                        There was an error loading MRR
+                        Hubo un error al cargar MRR
                         <code>{{this.mrrStatsError.message}}</code>
                     </p>
                 {{else}}
                     <div class="gh-dashboard-summary">
-                        <div class="data"><span class="currency">{{this.mrrStatsData.currency}}</span>{{format-number this.mrrStatsData.currentAmount}}</div>
+                        <div class="data">{{format-number this.mrrStatsData.currentAmount}}<span class="currency">{{this.mrrStatsData.currency}}</span></div>
                         <div class="growth {{this.mrrStatsData.percentClass}}">{{this.mrrStatsData.percentGrowth}}%</div>
                     </div>
                     {{#if this.mrrStatsData}}
@@ -30,16 +30,16 @@
     <div class="gh-dashboard-box total-members">
         <div class="gh-dashboard-chart-container">
             {{#if this.memberCountStatsLoading}}
-                Loading...
+                Cargando...
             {{else}}
                 {{#if this.memberCountStatsError}}
                     <p class="error">
-                        There was an error loading total members
+                        Hubo un error al cargar los usuarios totales
                         <code>{{this.memberCountStatsData.message}}</code>
                     </p>
                 {{else}}
                     <div class="gh-dashboard-summary small">
-                        <h4 class="gh-dashboard-header">Total members</h4>
+                        <h4 class="gh-dashboard-header">Usuarios totales</h4>
                         <div class="data-container">
                             <div class="data">{{format-number this.memberCountStatsData.all.total}}</div>
                             <div class="growth {{this.memberCountStatsData.all.percentClass}}">{{this.memberCountStatsData.all.percentGrowth}}%</div>
@@ -55,16 +55,16 @@
     <div class="gh-dashboard-box paid-members">
         <div class="gh-dashboard-chart-container">
             {{#if this.memberCountStatsLoading}}
-                Loading...
+                Cargando...
             {{else}}
                 {{#if this.memberCountStatsError}}
                     <p class="error">
-                        There was an error loading paid members
+                        Hubo un error al cargar los usuarios de pago
                         <code>{{this.memberCountStatsData.message}}</code>
                     </p>
                 {{else}}
                     <div class="gh-dashboard-summary small">
-                        <h4 class="gh-dashboard-header">Paid members</h4>
+                        <h4 class="gh-dashboard-header">Usuarios de pago</h4>
                         <div class="data-container">
                             <div class="data">{{format-number this.memberCountStatsData.paid.total}}</div>
                             <div class="growth {{this.memberCountStatsData.paid.percentClass}}">{{this.memberCountStatsData.paid.percentGrowth}}%</div>
@@ -80,16 +80,16 @@
     <div class="gh-dashboard-box newsletter-open-rate">
         <div class="gh-dashboard-chart-container">
             {{#if this.newsletterOpenRatesLoading}}
-                Loading...
+                Cargando...
             {{else}}
                 {{#if this.newsletterOpenRatesError}}
                     <p class="error">
-                        There was an error loading newsletter open rates
+                        Hubo un error al cargar la tasa de apertura de boletines de email
                         <code>{{this.memberCountStatsData.message}}</code>
                     </p>
                 {{else}}
                     <div class="gh-dashboard-summary small">
-                        <h4 class="gh-dashboard-header">Email open rate</h4>
+                        <h4 class="gh-dashboard-header">Tasa de apertura de boletines</h4>
 
                         <div class="data-container">
                             <div class="data">{{this.newsletterOpenRatesData.current}}%</div>

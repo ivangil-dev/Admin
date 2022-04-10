@@ -2,18 +2,18 @@
     <div class="gh-dashboard-box activity" data-test-dashboard-member-activity>
         <h4 class="gh-dashboard-header-container">
             <h4 class="gh-dashboard-header">
-                Activity
+                Actividad
             </h4>
         </h4>
         <div class="content">
             {{#let (members-event-fetcher filter=(members-event-filter excludeEmailEvents=true) pageSize=5) as |eventsFetcher|}}
                 {{#if eventsFetcher.isLoading}}
-                    Loading...
+                    Cargando...
                 {{/if}}
 
                 {{#if eventsFetcher.isError}}
                     <p class="error">
-                        There was an error loading events
+                        Hubo un error al cargar los eventos.
                         {{#if eventsFetcher.errorMessage}}
                             <code>{{eventsFetcher.errorMessage}}</code>
                         {{/if}}
@@ -50,13 +50,13 @@
                         {{else}}
                             <div class="gh-no-data-list" data-test-no-member-activities>
                                 {{svg-jar "no-data-list"}}
-                                <span>No member activity available.</span>
+                                <span>Ninguna actividad de usuarios disponible.</span>
                             </div>
                         {{/if}}
                     </div>
 
                     <div class="footer">
-                        <LinkTo @route="members-activity" @query={{reset-query-params "members-activity"}}>See all activity →</LinkTo>
+                        <LinkTo @route="members-activity" @query={{reset-query-params "members-activity"}}>Ver toda la actividad →</LinkTo>
                     </div>
                 {{/unless}}
             {{/let}}

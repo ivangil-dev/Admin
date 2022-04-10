@@ -1,5 +1,5 @@
 {{#if (eq this.displayState "sent")}}
-<div class="gh-btn gh-btn-text sent">Sent</div>
+<div class="gh-btn gh-btn-text sent">Enviar</div>
 {{else}}
 <GhBasicDropdown @verticalPosition="below" @horizontalPosition="right" @onOpen={{action "open"}} @onClose={{action "close"}} as |dd|>
     <dd.Trigger class="gh-btn gh-btn-editor {{if (or (eq this.displayState "published") (eq this.displayState "scheduled") (eq this.uiContext "preview")) "green"}} gh-publishmenu-trigger">
@@ -54,7 +54,7 @@
          --}}
         <footer class="gh-publishmenu-footer">
             <button class="gh-btn gh-btn-outline" data-test-publishmenu-cancel type="button" {{on "click" (action dd.actions.close)}}>
-                <span>Cancel</span>
+                <span>Cancelar</span>
             </button>
             <GhTaskButton
                 @buttonText={{this.buttonText}}

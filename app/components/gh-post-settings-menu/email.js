@@ -79,11 +79,11 @@ export default class Email extends Component {
             const resourceId = this.post.id;
             const testEmail = this.testEmailAddress.trim();
             if (!validator.isEmail(testEmail)) {
-                this.set('sendTestEmailError', 'Please enter a valid email');
+                this.set('sendTestEmailError', 'Por favor introduzca una dirección de correo electrónico válida');
                 return false;
             }
             if (!this.mailgunIsEnabled) {
-                this.set('sendTestEmailError', 'Please verify your email settings');
+                this.set('sendTestEmailError', 'Por favor verifique su configuración de correo electrónico');
                 return false;
             }
             this.set('sendTestEmailError', '');
@@ -96,7 +96,7 @@ export default class Email extends Component {
             return yield this.ajax.post(url, options);
         } catch (error) {
             if (error) {
-                let message = 'Email could not be sent, verify mail settings';
+                let message = 'No se pudo enviar un correo electrónico, verificar la configuración de correo';
 
                 // grab custom error message if present
                 if (

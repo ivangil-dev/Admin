@@ -1,18 +1,18 @@
 <div data-test-publishmenu-scheduled="true" ...attributes>
-    <header class="gh-publishmenu-heading" data-test-publishmenu-header>Will be {{if @emailOnly "sent" "published"}} in {{this.timeToPublished}}</header>
+    <header class="gh-publishmenu-heading" data-test-publishmenu-header>Estará {{if @emailOnly "enviado" "publicado"}} en {{this.timeToPublished}}</header>
     <div class="gh-publishmenu-content">
         <section class="gh-publishmenu-section">
             <div class="gh-publishmenu-radio {{if (eq @saveType "draft") "active"}}" {{on "click" (fn this.setSaveType "draft")}}>
                 <div class="gh-publishmenu-radio-button" data-test-publishmenu-draft-option></div>
                 <div class="gh-publishmenu-radio-content">
-                    <div class="gh-publishmenu-radio-label">Revert to draft</div>
-                    <div class="gh-publishmenu-radio-desc">Do not publish</div>
+                    <div class="gh-publishmenu-radio-label">Volver a borrador</div>
+                    <div class="gh-publishmenu-radio-desc">No publicar</div>
                 </div>
             </div>
             <div class="gh-publishmenu-radio {{if (eq @saveType "schedule") "active"}}" {{on "click" (fn this.setSaveType "schedule")}}>
                 <div class="gh-publishmenu-radio-button" data-test-publishmenu-scheduled-option></div>
                 <div class="gh-publishmenu-radio-content">
-                    <div class="gh-publishmenu-radio-label">Schedule for later</div>
+                    <div class="gh-publishmenu-radio-label">Programar para otro momento</div>
                     <GhDateTimePicker
                         @date={{@post.publishedAtBlogDate}}
                         @time={{@post.publishedAtBlogTime}}
@@ -25,7 +25,7 @@
                         @minDate={{this.minDate}}
                         @isActive={{eq @saveType "schedule"}}
                     />
-                    <div class="gh-publishmenu-radio-desc">Set automatic future publish date</div>
+                    <div class="gh-publishmenu-radio-desc">Establecer la fecha de publicación futura automática</div>
                 </div>
             </div>
         </section>
@@ -36,7 +36,7 @@
                         <p>{{html-safe @sendingEmailLimitError}}</p>
                     {{else}}
                         <div class="gh-publishmenu-email-label pe-none">
-                            <label class="gh-publishmenu-radio-label mb3 midgrey">Send by email to</label>
+                            <label class="gh-publishmenu-radio-label mb3 midgrey">Enviar por correo electrónico a</label>
 
                             <div class="form-group">
                                 <GhMembersRecipientSelect

@@ -1,13 +1,13 @@
 <div class="modal-body modal-fullsettings">
     <div class="flex items-center justify-between w-100 modal-fullsettings-topbar">
-        <h2 class="modal-fullsettings-heading">Email newsletter design</h2>
+        <h2 class="modal-fullsettings-heading">Diseño de boletines de correo electrónico</h2>
         <div class="flex items-center">
             <button
                 class="gh-btn mr3" type="button" {{on "click" (action "closeModal")}}
                 {{!-- disable mouseDown so it does not trigger focus-out validations --}}
                 {{on "mousedown" (optional this.noop)}}
             >
-                <span>Cancel</span>
+                <span>Cancelar</span>
             </button>
 
             <GhTaskButton
@@ -34,8 +34,8 @@
                             >
                                 <div class="modal-fullsettings-uploader">
                                     <div class="gh-header-img-desc">
-                                        <h4 class="modal-fullsettings-title">Header image</h4>
-                                        <p>Optional, recommended size 1200x600</p>
+                                        <h4 class="modal-fullsettings-title">Imagen de cabecera</h4>
+                                        <p>Tamaño opcional, recomendado. 1200x600</p>
                                     </div>
                                     {{#if uploader.isUploading}}
                                         <div class="gh-header-img-container">

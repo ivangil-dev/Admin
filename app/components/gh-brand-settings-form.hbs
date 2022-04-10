@@ -1,8 +1,8 @@
 <div class="gh-stack" ...attributes>
     <div class="gh-stack-item gh-setting-first gh-accent-color">
         <div class="gh-setting-content">
-            <div class="gh-setting-title">Accent color</div>
-            <div class="gh-setting-desc">Primary color used in your publication theme</div>
+            <div class="gh-setting-title">Color acentuado</div>
+            <div class="gh-setting-desc">Color primario utilizado en tu tema/apariencia.</div>
             {{#each this.uploader.errors as |error|}}
                 <div class="gh-setting-error" data-test-error="icon">{{or error.context error.message}}</div>
             {{/each}}
@@ -58,8 +58,8 @@
             as |uploader|
         >
         <div class="gh-setting-content">
-            <div class="gh-setting-title">Publication icon</div>
-            <div class="gh-setting-desc">A square, social icon used in the UI of your publication, at least 60x60px</div>
+            <div class="gh-setting-title">Icono de publicación</div>
+            <div class="gh-setting-desc">Un icono social, utilizado en la UI de tu publicación, al menos 60x60px</div>
             {{#each uploader.errors as |error|}}
                 <div class="gh-setting-error" data-test-error="icon">{{or error.context error.message}}</div>
             {{/each}}
@@ -76,7 +76,7 @@
                 </div>
             {{else}}
                 <button type="button" class="gh-btn self-center" {{on "click" this.triggerFileDialog}} data-test-image-upload-btn="icon">
-                    <span>Upload icon</span>
+                    <span>Subir icono</span>
                 </button>
             {{/if}}
             <div style="display:none">
@@ -93,8 +93,8 @@
             as |uploader|
         >
         <div>
-            <div class="gh-setting-title">Publication logo</div>
-            <div class="gh-setting-desc mb3">The primary logo for your brand displayed across your theme, should be transparent and at least 600px x 72px</div>
+            <div class="gh-setting-title">Logotipo de publicación</div>
+            <div class="gh-setting-desc mb3">El logotipo principal para tu marca que se muestra en tu tema, debe ser transparente y al menos 600 px x 72px</div>
 
             <div class="gh-setting-action gh-uploadbutton-container gh-setting-action-smallimg flex flex-column">
                 {{#each uploader.errors as |error|}}
@@ -111,7 +111,7 @@
                     </div>
                 {{else}}
                     <button type="button" class="gh-btn self-start" {{on "click" this.triggerFileDialog}} data-test-image-upload-btn="logo">
-                        <span>Upload logo</span>
+                        <span>Subir logotipo</span>
                     </button>
                 {{/if}}
                 <div style="display:none">
@@ -129,8 +129,8 @@
             as |uploader|
         >
         <div>
-            <div class="gh-setting-title">Publication cover</div>
-            <div class="gh-setting-desc mb3">An optional large background image for your site</div>
+            <div class="gh-setting-title">Imagen de portada</div>
+            <div class="gh-setting-desc mb3">Una imagen de fondo grande opcional para tu sitio.</div>
             {{#each uploader.errors as |error|}}
                 <div class="gh-setting-error" data-test-error="coverImage">{{or error.context error.message}}</div>
             {{/each}}
@@ -147,7 +147,7 @@
                     </div>
                 {{else}}
                     <button type="button" class="gh-btn self-start" {{on "click" this.triggerFileDialog}} data-test-image-upload-btn="coverImage">
-                        <span>Upload cover</span>
+                        <span>Subir imagen principal</span>
                     </button>
                 {{/if}}
                 <div style="display:none">

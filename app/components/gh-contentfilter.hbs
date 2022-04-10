@@ -1,5 +1,5 @@
 <div class="gh-contentfilter view-actions-bottom-row" ...attributes>
-    
+
     <div class="gh-contentfilter-menu gh-contentfilter-type {{if @selectedType.value "gh-contentfilter-selected"}}" data-test-type-select="true">
         <PowerSelect
             @selected={{@selectedType}}
@@ -12,7 +12,7 @@
             @matchTriggerWidth={{false}}
             as |type|
         >
-            {{#if type.name}}{{type.name}}{{else}}<span class="red">Unknown type</span>{{/if}}
+            {{#if type.name}}{{type.name}}{{else}}<span class="red">Tipo desconocido</span>{{/if}}
         </PowerSelect>
     </div>
 
@@ -29,7 +29,7 @@
                 @matchTriggerWidth={{false}}
                 as |visibility|
             >
-                {{#if visibility.name}}{{visibility.name}}{{else}}<span class="red">Unknown visibility</span>{{/if}}
+                {{#if visibility.name}}{{visibility.name}}{{else}}<span class="red">Visibilidad desconocida</span>{{/if}}
             </PowerSelect>
         </div>
     {{/unless}}
@@ -44,11 +44,11 @@
                 @triggerComponent="gh-power-select/trigger"
                 @triggerClass="gh-contentfilter-menu-trigger"
                 @dropdownClass="gh-contentfilter-menu-dropdown"
-                @searchPlaceholder="Search authors"
+                @searchPlaceholder="Buscar autores"
                 @matchTriggerWidth={{false}}
                 as |author|
             >
-                {{#if author.name}}{{author.name}}{{else}}<span class="red">Unknown author</span>{{/if}}
+                {{#if author.name}}{{author.name}}{{else}}<span class="red">Autor desconocido</span>{{/if}}
             </PowerSelect>
         </div>
     {{/unless}}
@@ -63,12 +63,12 @@
                 @triggerComponent="gh-power-select/trigger"
                 @triggerClass="gh-contentfilter-menu-trigger"
                 @dropdownClass="gh-contentfilter-menu-dropdown"
-                @searchPlaceholder="Search tags"
+                @searchPlaceholder="Buscar etiquetas"
                 @matchTriggerWidth={{false}}
                 @optionsComponent="power-select-vertical-collection-options"
                 as |tag|
             >
-                {{#if tag.name}}{{tag.name}}{{else}}<span class="red">Unknown tag</span>{{/if}}
+                {{#if tag.name}}{{tag.name}}{{else}}<span class="red">Etiqueta desconocida</span>{{/if}}
             </PowerSelect>
         </div>
     {{/unless}}
@@ -85,7 +85,7 @@
             @matchTriggerWidth={{false}}
             as |order|
         >
-            {{#if order.name}}{{order.name}}{{else}}<span class="red">Unknown</span>{{/if}}
+            {{#if order.name}}{{order.name}}{{else}}<span class="red">Desconocido</span>{{/if}}
         </PowerSelect>
     </div>
 
@@ -95,7 +95,7 @@
                 <button
                     type="button"
                     class="gh-contentfilter-menu-trigger gh-contentfilter-button gh-btn-save-view"
-                    title="Edit current view..."
+                    title="Editar vista actual..."
                     data-test-button="edit-view"
                     {{on "click" this.customViews.editView}}
                 >
@@ -105,7 +105,7 @@
                 <button
                     type="button"
                     class="gh-contentfilter-menu-trigger gh-contentfilter-button gh-btn-save-view"
-                    title="Save as view..."
+                    title="Guardar como vista..."
                     data-test-button="add-view"
                     {{on "click" this.customViews.editView}}
                 >
