@@ -12,7 +12,7 @@
                             <LinkTo @route={{pluralize this.post.displayName }} class="gh-editor-back-button" data-test-link={{pluralize this.post.displayName}}>
                                 <span>
                                     {{svg-jar "arrow-left"}}
-                                    {{capitalize (pluralize this.post.displayName)}}
+                                    Publicaciones
                                 </span>
                             </LinkTo>
                         </div>
@@ -33,7 +33,7 @@
                         {{#if this.post.isDraft}}
                             <div>
                                 <button type="button" class="gh-btn gh-editor-preview-trigger" {{on "click" (action "openPostPreviewModal")}}>
-                                    <span>Preview</span>
+                                    <span>Vista previa</span>
                                 </button>
                             </div>
                         {{/if}}
@@ -41,7 +41,7 @@
                         {{#if this.session.user.isContributor}}
                             <GhTaskButton @buttonText="Save"
                                 @task={{this.save}}
-                                @runningText="Saving"
+                                @runningText="Guardando"
                                 @class="gh-btn gh-btn-icon gh-btn-editor contributor-save-button"
                                 data-test-contributor-save=true />
                         {{else}}
@@ -67,11 +67,11 @@
             <GhKoenigEditor
                 @title={{readonly this.post.titleScratch}}
                 @titleAutofocus={{this.shouldFocusTitle}}
-                @titlePlaceholder={{concat (capitalize this.post.displayName) " title"}}
+                @titlePlaceholder="Título de la publicación"
                 @onTitleChange={{action "updateTitleScratch"}}
                 @onTitleBlur={{action (perform this.saveTitleTask)}}
                 @body={{readonly this.post.scratch}}
-                @bodyPlaceholder={{concat "Begin writing your " this.post.displayName "..."}}
+                @bodyPlaceholder="Comienza a escribir tu publicación..."
                 @onBodyChange={{action "updateScratch"}}
                 @headerOffset={{editor.headerHeight}}
                 @scrollContainerSelector=".gh-koenig-editor"
@@ -97,7 +97,7 @@
 
             <div class="gh-editor-wordcount-container">
                 <div class="gh-editor-wordcount">
-                    {{gh-pluralize this.wordCount.wordCount "word"}}
+                    {{gh-pluralize this.wordCount.wordCount "palabra"}}
                 </div>
                 <a href="https://ghost.org/help/using-the-editor/" class="flex" target="_blank" rel="noopener noreferrer">{{svg-jar "help"}}</a>
             </div>
@@ -114,7 +114,7 @@
         {{/if}}
     </div>
 
-    <button type="button" class="settings-menu-toggle gh-btn gh-btn-editor gh-btn-icon icon-only gh-btn-action-icon" title="Settings" {{on "click" this.toggleSettingsMenu}} data-test-psm-trigger>
+    <button type="button" class="settings-menu-toggle gh-btn gh-btn-editor gh-btn-icon icon-only gh-btn-action-icon" title="Opciones" {{on "click" this.toggleSettingsMenu}} data-test-psm-trigger>
         {{#if this.showSettingsMenu}}
             <span class="settings-menu-open">{{svg-jar "sidemenu-open"}}</span>
         {{else}}
