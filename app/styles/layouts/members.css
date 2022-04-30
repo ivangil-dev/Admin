@@ -1006,6 +1006,36 @@ textarea.gh-member-details-textarea {
     stroke-width: 1px;
 }
 
+.gh-member-newsletters {
+    padding: 16px 20px;
+    background: var(--main-bg-color);
+    box-shadow: 0 1px 4px -1px rgb(0 0 0 / 10%);
+    border-radius: 3px;
+}
+
+.gh-member-newsletter-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--whitegrey);
+    padding: 16px 0;
+}
+
+.gh-member-newsletter-row:first-child {
+    padding-top: 0;
+}
+
+.gh-member-newsletter-row:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.gh-member-newsletter-title {
+    font-weight: 600;
+    font-size: 1.4rem !important;
+    margin-bottom: 0!important;
+}
+
 .gh-member-feed-container {
     display: flex;
     flex-grow: 1;
@@ -1109,10 +1139,9 @@ textarea.gh-member-details-textarea {
 
 .gh-member-feed-event {
     display: inline-block;
-    text-transform: lowercase;
+    color: var(--middarkgrey);
     font-weight: 500;
-    font-size: 14px;
-    color: var(--black);
+    white-space: nowrap;
 }
 
 .gh-member-feed-event:first-letter {
@@ -1576,7 +1605,6 @@ p.gh-members-import-errordetail:first-of-type {
 
 .gh-email-design-typography-wrapper {
     display: flex;
-    width: 250px;
 }
 
 .gh-email-design-typography {
@@ -1585,7 +1613,7 @@ p.gh-members-import-errordetail:first-of-type {
 
 .gh-email-design-typography .gh-setting-dropdown {
     margin: 0;
-    padding: 0 40px 0 8px;
+    padding: 0 8px 0 8px;
 }
 
 .gh-email-design-typography-wrapper.header .gh-setting-dropdown {
@@ -1680,10 +1708,12 @@ p.gh-members-import-errordetail:first-of-type {
     padding: 0;
 }
 .gh-members-emailsettings-footer-input {
-    border: 1px solid var(--whitegrey-d1);
-    padding: 0 12px 6px 12px;
     height: 120px;
+    padding: 0 12px 6px 12px;
+    border: 1px solid var(--whitegrey-d1);
+    background: var(--white);
     border-radius: 4px;
+    word-break: break-word;
 }
 
 .gh-members-emailsettings-footer-input p {
@@ -1844,6 +1874,12 @@ p.gh-members-import-errordetail:first-of-type {
     color: #15212A;
 }
 
+.gh-members-emailpreview-header h5 {
+    color: var(--midgrey-l1);
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
 .gh-members-emailpreview-title {
     display: flex;
     flex-direction: column;
@@ -1936,6 +1972,7 @@ p.gh-members-import-errordetail:first-of-type {
     line-height: 1.5em;
     color: #738a94;
     padding: 10px 30px;
+    word-break: break-word;
 }
 
 .gh-members-emailpreview-footercontent p {

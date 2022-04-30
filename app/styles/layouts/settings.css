@@ -884,8 +884,10 @@
 /* Email newsletter LABS
 /* ---------------------------------------------------------- */
 
-.gh-newsletters .intro {
-    margin-bottom: 2rem;
+.gh-newsletters .gh-dropdown-archived {
+    color: var(--darkgrey);
+    font-size: 1.35rem;
+    font-weight: 400;
 }
 
 .gh-newsletters .gh-expandable-title {
@@ -897,10 +899,10 @@
 }
 
 .gh-newsletters .gh-expandable-description {
-    margin: 0;
+    margin: 0 0 1.8rem;
     padding: 0;
-    color: var(--darkgrey);
-    font-size: 1.4rem;
+    color: var(--midgrey);
+    font-size: 1.3rem;
     font-weight: 400;
 }
 
@@ -923,10 +925,6 @@
 .gh-newsletter-card[draggable="true"] {
     /* required to avoid background being picked up when dragging */
     z-index: 1;
-}
-
-.gh-newsletter-card.multiple {
-    cursor: pointer;
 }
 
 .gh-newsletter-card-draggable:hover {
@@ -1001,8 +999,9 @@
     display: flex;
     align-items: center;
     margin: 0;
-    font-size: 1.9rem;
-    line-height: 22px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1.3em;
 }
 
 .stats-block .gh-newsletter-card-name {
@@ -1024,9 +1023,7 @@
 }
 
 .gh-newsletter-actions-menu {
-    top: calc(100% + 6px);
-    left: auto;
-    right: 0;
+    margin-top: 4px;
 }
 
 .gh-add-newsletter {
@@ -1044,6 +1041,67 @@
 .gh-add-newsletter svg path {
     stroke: var(--green-d1);
     stroke-width: 3;
+}
+
+.gh-newsletters-setting-sectionheading {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+    color: var(--midgrey-l1);
+    margin: 0 0 16px;
+    padding: 0 0 8px;
+    border-bottom: 1px solid var(--whitegrey);
+}
+
+.gh-newsletters-labs .form-group.vertical p {
+    margin: 4px 0 0;
+}
+
+.gh-newsletters-labs .modal-fullsettings-uploader {
+    flex-grow: 1;
+    margin: 0;
+}
+
+.gh-newsletters-labs .gh-header-img-uploadicon {
+    background: var(--whitegrey-l2);
+}
+
+.gh-newsletters-labs .gh-email-design-typography-wrapper.header .gh-btn-group {
+    background: var(--whitegrey-d1);
+}
+
+.gh-newsletters-labs .gh-stack-item .tooltip-top-left::before {
+    width: max-content;
+    max-width: 320px;
+    white-space: normal;
+    word-break: break-word;
+    text-align: left;
+}
+
+.gh-newsletters-labs .gh-members-emailsettings-footer {
+    margin-top: auto;
+    margin-bottom: 0;
+}
+
+.gh-newsletters-labs .gh-members-emailpreview-container {
+    margin: 16px auto 32px;
+}
+
+.gh-newsletters-labs .gh-members-emailpreview-faux {
+    height: 88px;
+    background: var(--whitegrey-l2);
+}
+
+.gh-newsletters-labs .gh-members-emailpreview-faux .dark,
+.gh-newsletters-labs .gh-members-emailpreview-faux .strong {
+    color: var(--darkgrey);
+    font-size: 1.4rem;
+    font-weight: 600;   
+}
+
+.gh-newsletters-labs .gh-members-emailpreview-faux p {
+    color: var(--midgrey-l2);
 }
 
 /* Code injection
@@ -1678,7 +1736,6 @@ p.theme-validation-details {
     color: var(--darkgrey-l1);
     font-weight: 400;
     font-size: 1.45rem;
-    border-radius: var(--border-radius);
     transition: none;
 }
 
@@ -1763,7 +1820,7 @@ p.theme-validation-details {
 .gh-nav-design .gh-nav-bottom::after {
     bottom: 72px;
     box-shadow: 0 0 0 1px rgba(0,0,0,.04), 0 -8px 16px -3px rgba(0,0,0,.15);
-  }
+}
 
 .gh-change-theme {
     position: sticky;
@@ -1801,7 +1858,6 @@ p.theme-validation-details {
     margin: 8px 0 24px;
     padding: 24px var(--main-layout-area-padding) 16px;
     background: var(--mainmenu-color-hover-bg);
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
 }
 
 .gh-nav-design .gh-setting {
@@ -1903,13 +1959,13 @@ p.theme-validation-details {
     height: 100%;
 }
 
-.gh-design-page-preview-mode,
-.gh-design-page-preview-mode select {
+.gh-preview-page-selector,
+.gh-preview-page-selector select {
     height: 34px;
-    min-width: 128px;
+    min-width: 160px;
 }
 
-.gh-design-page-preview-mode svg {
+.gh-preview-page-selector svg {
     margin-top: -.1em;
 }
 

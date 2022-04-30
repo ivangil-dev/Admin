@@ -84,22 +84,23 @@ const GhTaskButton = Component.extend({
         }
 
         let value = this.get('task.last.value');
-        return (taskName === lastTaskName) && !isBlank(value) && value !== false;
+        return (taskName === lastTaskName) && !isBlank(value) && value !== false && value !== 'canceled';
     }),
 
     isSuccessClass: computed('isSuccess', function () {
         return this.isSuccess ? this.successClass : '';
     }),
 
-    isFailure: computed('hasRun', 'isRunning', 'isSuccess', 'task.last.error', function () {
+    isFailure: computed('hasRun', 'isRunning', 'isSuccess', 'task.last.{value,error}', function () {
         let taskName = this.get('task.name');
         let lastTaskName = this.get('task.last.task.name');
+        const lastTaskValue = this.task?.last?.value;
 
         if (!this.hasRun || this.isRunning || this.isSuccess) {
             return false;
         }
 
-        return (taskName === lastTaskName) && this.get('task.last.error') !== undefined;
+        return (taskName === lastTaskName) && this.get('task.last.error') !== undefined && lastTaskValue !== 'canceled';
     }),
 
     isFailureClass: computed('isFailure', function () {

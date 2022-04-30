@@ -10,21 +10,28 @@ export default class Newsletter extends Model.extend(ValidationEngine) {
 
     @attr senderName;
     @attr senderEmail;
-    @attr senderReplyTo;
+    @attr({defaultValue: 'newsletter'}) senderReplyTo;
 
     @attr({defaultValue: 'active'}) status;
     @attr({defaultValue: ''}) recipientFilter;
-    @attr({defaultValue: false}) subscribeOnSignup;
+    @attr({defaultValue: true}) subscribeOnSignup;
+    @attr({defaultValue: 'members'}) visibility;
     @attr({defaultValue: 0}) sortOrder;
 
-    // Design-related properties - TODO: not currently supported in API
+    // Design-related properties
     @attr headerImage;
     @attr({defaultValue: true}) showHeaderIcon;
     @attr({defaultValue: true}) showHeaderTitle;
+    @attr({defaultValue: true}) showHeaderName;
     @attr({defaultValue: 'sans_serif'}) titleFontCategory;
     @attr({defaultValue: 'center'}) titleAlignment;
     @attr({defaultValue: true}) showFeatureImage;
     @attr({defaultValue: 'sans_serif'}) bodyFontCategory;
-    @attr() footerContent;
+    @attr footerContent;
     @attr({defaultValue: true}) showBadge;
+    @attr count;
+
+    // HACK - not a real model attribute but a workaround for Ember Data not
+    //        exposing meta from save responses
+    @attr _meta;
 }

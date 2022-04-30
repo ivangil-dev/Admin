@@ -1,12 +1,15 @@
 import Component from '@glimmer/component';
+import ConfirmArchiveModal from '../../modals/newsletters/confirm-archive';
+import ConfirmUnarchiveModal from '../../modals/newsletters/confirm-unarchive';
 import {action} from '@ember/object';
 import {inject as service} from '@ember/service';
 import {task} from 'ember-concurrency';
 import {tracked} from '@glimmer/tracking';
 
 export default class NewsletterManagementComponent extends Component {
-    @service store;
+    @service modals;
     @service router;
+    @service store;
 
     @tracked statusFilter = 'active';
     @tracked filteredNewsletters = [];
@@ -24,6 +27,9 @@ export default class NewsletterManagementComponent extends Component {
     willDestroy() {
         super.willDestroy(...arguments);
         this.router.off('routeDidChange', this.handleNewRouteChange);
+
+        this.confirmArchiveModal?.close();
+        this.confirmUnarchiveModal?.close();
     }
 
     get activeNewsletters() {
@@ -35,7 +41,7 @@ export default class NewsletterManagementComponent extends Component {
     }
 
     get displayingDefault() {
-        return this.statusFilter === 'active' && this.activeNewsletters.length === 1;
+        return this.statusFilter === 'active' && this.filteredNewsletters.length === 1;
     }
 
     @action
@@ -64,6 +70,14 @@ export default class NewsletterManagementComponent extends Component {
         }
     }
 
+    @action
+    archiveNewsletter(newsletter) {
+        this.confirmArchiveModal = this.modals.open(ConfirmArchiveModal, {
+            newsletter,
+            archiveNewsletterTask: this.archiveNewsletterTask
+        });
+    }
+
     @task
     *archiveNewsletterTask(newsletter) {
         newsletter.status = 'archived';
@@ -71,7 +85,17 @@ export default class NewsletterManagementComponent extends Component {
 
         this.updateFilteredNewsletters();
 
+        this.confirmArchiveModal?.close();
+
         return result;
+    }
+
+    @action
+    unarchiveNewsletter(newsletter) {
+        this.confirmUnarchiveModal = this.modals.open(ConfirmUnarchiveModal, {
+            newsletter,
+            unarchiveNewsletterTask: this.unarchiveNewsletterTask
+        });
     }
 
     @task
@@ -85,12 +109,14 @@ export default class NewsletterManagementComponent extends Component {
 
         this.updateFilteredNewsletters();
 
+        this.confirmUnarchiveModal?.close();
+
         return result;
     }
 
     @task
     *loadNewslettersTask() {
-        const newsletters = yield this.store.findAll('newsletter');
+        const newsletters = yield this.store.query('newsletter', {include: 'count.members,count.posts'});
 
         this.updateFilteredNewsletters();
 

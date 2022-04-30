@@ -12,7 +12,7 @@ export default BaseValidator.create({
         }
 
         if (!validator.isLength(model.name || '', 0, 191)) {
-            model.errors.add('name', 'Name cannot be longer than 191 characters.');
+            model.errors.add('name', 'Cannot be longer than 191 characters.');
             this.invalidate();
         }
 
@@ -20,13 +20,8 @@ export default BaseValidator.create({
     },
 
     senderName(model) {
-        if (isBlank(model.senderName)) {
-            model.errors.add('senderName', 'Please enter a sender name.');
-            this.invalidate();
-        }
-
         if (!validator.isLength(model.senderName || '', 0, 191)) {
-            model.errors.add('senderName', 'Sender name cannot be longer than 191 characters.');
+            model.errors.add('senderName', 'Cannot be longer than 191 characters.');
             this.invalidate();
         }
 
@@ -34,16 +29,13 @@ export default BaseValidator.create({
     },
 
     senderEmail(model) {
-        if (isBlank(model.senderEmail)) {
-            model.errors.add('senderEmail', 'Please enter a newsletter email address.');
-            this.invalidate();
-        } else if (!validator.isEmail(model.senderEmail)) {
+        if (model.senderEmail && !validator.isEmail(model.senderEmail)) {
             model.errors.add('senderEmail', 'Invalid email.');
             this.invalidate();
         }
 
         if (!validator.isLength(model.senderEmail || '', 0, 191)) {
-            model.errors.add('senderEmail', 'Sender email cannot be longer than 191 characters.');
+            model.errors.add('senderEmail', 'Cannot be longer than 191 characters.');
             this.invalidate();
         }
 
@@ -54,16 +46,27 @@ export default BaseValidator.create({
         if (isBlank(model.senderReplyTo)) {
             model.errors.add('senderReplyTo', 'Please enter a reply-to email address.');
             this.invalidate();
-        } else if (!validator.isEmail(model.senderReplyTo)) {
-            model.errors.add('senderReplyTo', 'Invalid email.');
-            this.invalidate();
         }
 
-        if (!validator.isLength(model.senderReplyTo || '', 0, 191)) {
-            model.errors.add('senderReplyTo', 'Reply-to email cannot be longer than 191 characters.');
+        if (!validator.isIn(model.senderReplyTo, ['newsletter', 'support'])) {
+            model.errors.add('senderReplyTo', 'Can only be set to "newsletter" or "support".');
             this.invalidate();
         }
 
         model.hasValidated.addObject('senderReplyTo');
+    },
+
+    visibility(model) {
+        if (isBlank(model.visibility)) {
+            model.errors.add('visibility', 'Please enter visibility.');
+            this.invalidate();
+        }
+
+        if (!validator.isIn(model.senderReplyTo, ['members', 'paid'])) {
+            model.errors.add('visibility', 'Can only be set to "members" or "paid".');
+            this.invalidate();
+        }
+
+        model.hasValidated.addObject('visibility');
     }
 });

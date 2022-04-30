@@ -1,0 +1,85 @@
+<section class="gh-dashboard5-section gh-dashboard5-anchor" {{did-insert this.loadCharts}}>
+    <article class="gh-dashboard5-box">
+        {{#if this.hasPaidTiers}}
+            <div class="gh-dashboard5-select-title">
+                <PowerSelect
+                    @selected={{this.selectedDisplayOption}}
+                    @options={{this.displayOptions}}
+                    @searchEnabled={{false}}
+                    @onChange={{this.onDisplayChange}}
+                    @triggerComponent="gh-power-select/trigger"
+                    @triggerClass="gh-contentfilter-menu-trigger"
+                    @dropdownClass="gh-contentfilter-menu-dropdown"
+                    @matchTriggerWidth={{false}}
+                    as |option|
+                >
+                    {{#if option.name}}{{option.name}}{{else}}<span class="red">Unknown option</span>{{/if}}
+                </PowerSelect>
+            </div>
+        {{else}}
+            <Dashboard::v5::Parts::Metric
+                @label="Total members"
+                @value={{format-number this.totalMembers}}
+                @trends={{this.hasTrends}}
+                @percentage={{this.totalMembersTrend}}
+                @large={{true}} /> 
+        {{/if}}
+
+        <div class="gh-dashboard5-hero {{unless this.hasPaidTiers 'is-solo'}}">
+            <div class="gh-dashboard5-chart gh-dashboard5-totals">
+                <div class="gh-dashboard5-chart-container">
+                    <div class="gh-dashboard5-chart-box">
+                        {{#if this.loading}}
+                            <div class="gh-dashboard5-chart-loading">
+                                <div class="gh-loading-spinner"></div>
+                            </div>      
+                        {{else}}
+                            <EmberChart
+                                @type={{this.chartType}}
+                                @data={{this.chartData}}
+                                @options={{this.chartOptions}}
+                                @height={{200}} />
+                        {{/if}}
+                    </div>
+                    <div id="gh-dashboard5-anchor-tooltip" class="gh-dashboard5-tooltip">
+                        <div class="gh-dashboard5-tooltip-label">
+                            -
+                        </div>
+                        <div class="gh-dashboard5-tooltip-value">
+                            -
+                        </div>
+                    </div>
+                </div>
+                <div class="gh-dashboard5-chart-ticks">
+                    <span id="gh-dashboard5-anchor-date-start">-</span>
+                    <span id="gh-dashboard5-anchor-date-end">-</span>
+                </div>
+            </div>
+
+            {{#if this.hasPaidTiers}}
+                <article class="gh-dashboard5-minicharts">
+                    <Dashboard::v5::Charts::Mrr />
+                    <Dashboard::v5::Charts::PaidBreakdown />
+                    <Dashboard::v5::Charts::PaidMix />
+                </article>
+            {{/if}}
+        </div>
+
+        <div class="gh-dashboard5-select">
+            <PowerSelect
+                @selected={{this.selectedDaysOption}}
+                @options={{this.daysOptions}}
+                @searchEnabled={{false}}
+                @onChange={{this.onDaysChange}}
+                @triggerComponent="gh-power-select/trigger"
+                @triggerClass="gh-contentfilter-menu-trigger"
+                @dropdownClass="gh-contentfilter-menu-dropdown"
+                @matchTriggerWidth={{false}}
+                as |option|
+            >
+                {{#if option.name}}{{option.name}}{{else}}<span class="red">Unknown option</span>{{/if}}
+            </PowerSelect>
+        </div>
+
+    </article>
+</section>

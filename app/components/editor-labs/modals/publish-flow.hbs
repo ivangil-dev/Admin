@@ -1,0 +1,24 @@
+<div class="flex flex-column h-100 items-center overflow-auto">
+    <header class="gh-publish-header" data-test-modal="publish">
+        <button class="gh-publish-back-button" title="Close" type="button" {{on "click" @close}}>
+            <span>{{svg-jar "close-stroke"}} Close</span>
+        </button>
+    </header>
+
+    <div class="gh-publish-settings-container">
+        {{#if this.isConfirming}}
+            <EditorLabs::Modals::PublishFlow::Confirm
+                @publishOptions={{@data.publishOptions}}
+                @confirm={{noop}}
+                @cancel={{this.toggleConfirm}}
+                @close={{@close}}
+            />
+        {{else}}
+            <EditorLabs::Modals::PublishFlow::Options
+                @publishOptions={{@data.publishOptions}}
+                @confirm={{this.toggleConfirm}}
+                @close={{@close}}
+            />
+        {{/if}}
+    </div>
+</div>

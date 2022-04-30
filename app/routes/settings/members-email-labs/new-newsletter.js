@@ -1,11 +1,12 @@
 import AdminRoute from 'ghost-admin/routes/admin';
-import EditNewsletterModal from 'ghost-admin/components/modals/edit-newsletter';
+import NewNewsletterModal from '../../../components/modals/newsletters/new';
 import {action} from '@ember/object';
 import {inject as service} from '@ember/service';
 
 export default class NewNewsletterRoute extends AdminRoute {
     @service modals;
     @service router;
+    @service settings;
     @service store;
 
     newsletterModal = null;
@@ -17,7 +18,7 @@ export default class NewNewsletterRoute extends AdminRoute {
     setupController(controller, model) {
         this.newsletterModal?.close();
 
-        this.newsletterModal = this.modals.open(EditNewsletterModal, {
+        this.newsletterModal = this.modals.open(NewNewsletterModal, {
             newsletter: model,
             afterSave: this.afterSave
         }, {
@@ -25,22 +26,20 @@ export default class NewNewsletterRoute extends AdminRoute {
         });
     }
 
-    deactivate() {
-        this.isLeaving = true;
-        this.newsletterModal?.close();
-
-        this.isLeaving = false;
-        this.newsletterModal = null;
-    }
-
     @action
     afterSave() {
         this.router.transitionTo('settings.members-email-labs');
     }
 
+    deactivate() {
+        this.isLeaving = true;
+        this.newsletterModal?.close();
+        this.isLeaving = false;
+    }
+
     @action
-    beforeModalClose() {
-        if (this.newsletterModal && !this.isLeaving) {
+    async beforeModalClose() {
+        if (!this.isLeaving) {
             this.router.transitionTo('settings.members-email-labs');
         }
     }

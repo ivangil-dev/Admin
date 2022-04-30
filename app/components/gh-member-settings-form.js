@@ -22,6 +22,7 @@ export default class extends Component {
 
     @tracked showMemberProductModal = false;
     @tracked productsList;
+    @tracked newslettersList;
 
     get canShowStripeInfo() {
         return !this.member.get('isNew') && this.membersUtils.isStripeEnabled;
@@ -46,6 +47,17 @@ export default class extends Component {
         const hasAnActivePaidProduct = !!this.productsList?.length;
 
         return hasAnActivePaidProduct;
+    }
+
+    get hasSingleNewsletter() {
+        if (!this.feature.get('multipleNewsletters')) {
+            return true;
+        }
+        return this.newslettersList?.length === 1;
+    }
+
+    get hasMultipleNewsletters() {
+        return !!(this.feature.get('multipleNewsletters') && this.newslettersList?.length > 1);
     }
 
     get isCreatingComplimentary() {
@@ -108,8 +120,21 @@ export default class extends Component {
     }
 
     @action
+    updateNewsletterPreference(event) {
+        if (!event.target.checked) {
+            this.member.set('newsletters', []);
+        } else if (this.newslettersList.firstObject) {
+            const newsletter = this.newslettersList.firstObject;
+            this.member.set('newsletters', [newsletter]);
+        }
+    }
+
+    @action
     setup() {
         this.fetchProducts.perform();
+        if (this.feature.get('multipleNewsletters')) {
+            this.fetchNewsletters.perform();
+        }
     }
 
     @action
@@ -120,6 +145,11 @@ export default class extends Component {
     @action
     setLabels(labels) {
         this.member.set('labels', labels);
+    }
+
+    @action
+    setMemberNewsletters(newsletters) {
+        this.member.set('newsletters', newsletters);
     }
 
     @action
@@ -196,5 +226,16 @@ export default class extends Component {
     @task({drop: true})
     *fetchProducts() {
         this.productsList = yield this.store.query('product', {filter: 'type:paid+active:true', include: 'monthly_price,yearly_price'});
+    }
+
+    @task({drop: true})
+    *fetchNewsletters() {
+        this.newslettersList = yield this.store.query('newsletter', {filter: 'status:active'});
+        if (this.member.get('isNew')) {
+            const defaultNewsletters = this.newslettersList.filter((newsletter) => {
+                return newsletter.subscribeOnSignup && newsletter.visibility === 'members';
+            });
+            this.setMemberNewsletters(defaultNewsletters);
+        }
     }
 }
