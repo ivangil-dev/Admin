@@ -40,8 +40,8 @@ import {tracked} from '@glimmer/tracking';
 /**
  * @typedef PaidMembersByCadence
  * @type {Object}
- * @property {number} annual Paid memebrs on annual plan
- * @property {number} monthly Paid memebrs on monthly plan
+ * @property {number} year Paid memebrs on annual plan
+ * @property {number} month Paid memebrs on monthly plan
  */
 
 /**
@@ -67,6 +67,7 @@ export default class DashboardStatsService extends Service {
     @service ghostPaths;
     @service membersCountCache;
     @service settings;
+    @service membersUtils;
 
     /**
      * @type {?SiteStatus} Contains information on what graphs need to be shown
@@ -134,7 +135,7 @@ export default class DashboardStatsService extends Service {
      * @type {number|'all'}
      * Amount of days to load for member count and MRR related charts
      */
-    @tracked chartDays = 7;
+    @tracked chartDays = 30 + 1;
 
     /**
      * Filter last seen by this status
@@ -142,8 +143,12 @@ export default class DashboardStatsService extends Service {
      */
     @tracked lastSeenFilterStatus = 'total';
 
-    paidProducts = null;
- 
+    paidTiers = null;
+
+    get activePaidTiers() {
+        return this.paidTiers ? this.paidTiers.filter(tier => tier.active) : null;
+    }
+
     /**
      * @type {?MemberCounts}
      */
@@ -192,7 +197,7 @@ export default class DashboardStatsService extends Service {
                     paid: stat.paid + stat.comped,
                     free: stat.free
                 };
-            }            
+            }
         }
 
         // We don't have any statistic from more than x days ago.
@@ -220,7 +225,7 @@ export default class DashboardStatsService extends Service {
             const stat = this.mrrStats[index];
             if (stat.date <= searchDate) {
                 return stat.mrr;
-            }            
+            }
         }
 
         // We don't have any statistic from more than x days ago.
@@ -291,13 +296,17 @@ export default class DashboardStatsService extends Service {
             return;
         }
 
-        yield this.loadPaidProducts();
+        if (this.membersUtils.paidMembersEnabled) {
+            yield this.loadPaidTiers();
+        }
+
+        const hasPaidTiers = this.membersUtils.paidMembersEnabled && this.activePaidTiers && this.activePaidTiers.length > 0;
 
         this.siteStatus = {
-            hasPaidTiers: this.paidProducts && this.paidProducts.length > 0,
-            hasMultipleTiers: this.paidProducts && this.paidProducts.length > 1,
+            hasPaidTiers,
+            hasMultipleTiers: hasPaidTiers && this.activePaidTiers.length > 1,
             newslettersEnabled: this.settings.get('editorDefaultEmailRecipients') !== 'disabled',
-            membersEnabled: this.settings.get('membersSignupAccess') !== 'none'
+            membersEnabled: this.membersUtils.isMembersEnabled
         };
     }
 
@@ -310,9 +319,6 @@ export default class DashboardStatsService extends Service {
     }
 
     loadSubscriptionCountStats() {
-        if (this.paidMembersByCadence && this.paidMembersByTier && this.subscriptionCountStats) {
-            return;
-        }
         if (this._loadSubscriptionCountStats.isRunning) {
             // We need to explicitly wait for the already running task instead of dropping it and returning immediately
             return this._loadSubscriptionCountStats.last;
@@ -342,7 +348,10 @@ export default class DashboardStatsService extends Service {
         let statsUrl = this.ghostPaths.url.api('stats/subscriptions');
         let result = yield this.ajax.request(statsUrl);
 
-        const paidMembersByCadence = {};
+        const paidMembersByCadence = {
+            month: 0,
+            year: 0
+        };
 
         for (const cadence of result.meta.cadences) {
             paidMembersByCadence[cadence] = result.meta.totals.reduce((sum, total) => {
@@ -353,15 +362,20 @@ export default class DashboardStatsService extends Service {
             }, 0);
         }
 
-        yield this.loadPaidProducts();
+        yield this.loadPaidTiers();
 
         const paidMembersByTier = [];
 
         for (const tier of result.meta.tiers) {
-            const product = this.paidProducts.find(x => x.id === tier);
+            const _tier = this.paidTiers.find(x => x.id === tier);
+
+            if (!_tier) {
+                continue;
+            }
             paidMembersByTier.push({
                 tier: {
-                    name: product.name
+                    id: _tier.id,
+                    name: _tier.name
                 },
                 members: result.meta.totals.reduce((sum, total) => {
                     if (total.tier !== tier) {
@@ -372,11 +386,24 @@ export default class DashboardStatsService extends Service {
             });
         }
 
+        // Add all missing tiers without members
+        for (const tier of this.activePaidTiers) {
+            if (!paidMembersByTier.find(t => t.tier.id === tier.id)) {
+                paidMembersByTier.push({
+                    tier: {
+                        id: tier.id,
+                        name: tier.name
+                    },
+                    members: 0
+                });
+            }
+        }
+
         function mergeDates(list, entry) {
             const [current, ...rest] = list;
 
             if (!current) {
-                return entry;
+                return entry ? [entry] : [];
             }
 
             if (!entry) {
@@ -397,7 +424,7 @@ export default class DashboardStatsService extends Service {
                 });
             }
 
-            return [entry].concat(mergeDates(rest));
+            return [entry].concat(mergeDates(list));
         }
 
         const subscriptionCountStats = mergeDates(result.stats);
@@ -531,24 +558,24 @@ export default class DashboardStatsService extends Service {
         this.membersLastSeen7d = result7d;
     }
 
-    loadPaidProducts() {
-        if (this.paidProducts !== null) {
+    loadPaidTiers() {
+        if (this.paidTiers !== null) {
             return;
         }
-        if (this._loadPaidProducts.isRunning) {
+        if (this._loadPaidTiers.isRunning) {
             // We need to explicitly wait for the already running task instead of dropping it and returning immediately
-            return this._loadPaidProducts.last;
+            return this._loadPaidTiers.last;
         }
-        return this._loadPaidProducts.perform();
+        return this._loadPaidTiers.perform();
     }
 
     @task
-    *_loadPaidProducts() {
-        const data = yield this.store.query('product', {
-            filter: 'type:paid+active:true',
+    *_loadPaidTiers() {
+        const data = yield this.store.query('tier', {
+            filter: 'type:paid',
             limit: 'all'
         });
-        this.paidProducts = data.toArray();
+        this.paidTiers = data.toArray();
     }
 
     loadNewsletterSubscribers() {
@@ -568,7 +595,7 @@ export default class DashboardStatsService extends Service {
             this.newsletterSubscribers = this.dashboardMocks.newsletterSubscribers;
             return;
         }
-        
+
         const [paid, free] = yield Promise.all([
             this.membersCountCache.count('newsletters.status:active+status:-free'),
             this.membersCountCache.count('newsletters.status:active+status:free')
@@ -598,7 +625,7 @@ export default class DashboardStatsService extends Service {
             this.emailsSent30d = this.dashboardMocks.emailsSent30d;
             return;
         }
-        
+
         const start30d = new Date(Date.now() - 30 * 86400 * 1000);
         const result = yield this.store.query('email', {limit: 100, filter: 'submitted_at:>' + start30d.toISOString()});
         this.emailsSent30d = result.reduce((c, email) => c + email.emailCount, 0);
@@ -676,6 +703,7 @@ export default class DashboardStatsService extends Service {
 
         this.loadMrrStats();
         this.loadMemberCountStats();
+        this.loadSubscriptionCountStats();
         this.loadLastSeen();
         this.loadPaidMembersByCadence();
         this.loadPaidMembersByTier();

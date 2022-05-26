@@ -42,7 +42,7 @@ export default [
     },
     {
         id: 5,
-        key: 'lang',
+        key: 'locale',
         value: 'en',
         group: 'site',
         created_at: '2013-11-25T14:48:11.000Z',
@@ -73,7 +73,9 @@ export default [
     {
         id: 12,
         key: 'labs',
-        value: '{}',
+        value: JSON.stringify({
+            // Keep the GA flags that are not yet cleaned up in frontend code here
+        }),
         group: 'labs',
         created_at: '2015-01-12T18:29:01.000Z',
         created_by: 1,
@@ -117,11 +119,11 @@ export default [
         id: 16,
         created_at: '2016-05-05T15:04:03.115Z',
         created_by: 1,
-        key: 'slack',
+        key: 'slack_username',
         group: 'slack',
-        updated_at: '2016-05-05T18:33:09.168Z',
+        updated_at: '2022-05-05T18:33:09.168Z',
         updated_by: 1,
-        value: '[{"url":"", "username":"Ghost"}]'
+        value: 'Ghost'
     },
     {
         id: 17,
@@ -177,7 +179,7 @@ export default [
         id: 23,
         group: 'members',
         key: 'members_subscription_settings',
-        value: '{"allowSelfSignup":true,"fromAddress":"noreply","paymentProcessors":[{"adapter":"stripe","config":{"secret_token":"","public_token":"","product":{"name":"Ghost Subscription"},"plans":[{"name":"Monthly","currency":"usd","interval":"month","amount":""},{"name":"Yearly","currency":"usd","interval":"year","amount":""}]}}]}',
+        value: '{"allowSelfSignup":true,"fromAddress":"noreply","paymentProcessors":[{"adapter":"stripe","config":{"secret_token":"","public_token":"","tier":{"name":"Ghost Subscription"},"plans":[{"name":"Monthly","currency":"usd","interval":"month","amount":""},{"name":"Yearly","currency":"usd","interval":"year","amount":""}]}}]}',
         created_at: '2019-10-09T09:49:00.000Z',
         created_by: 1,
         updated_at: '2019-10-09T09:49:00.000Z',
@@ -262,5 +264,15 @@ export default [
         updated_at: '2022-02-21T13:47:00.000Z',
         updated_by: 1,
         value: 'true'
+    },
+    {
+        id: 33,
+        created_at: '2016-05-05T15:04:03.115Z',
+        created_by: 1,
+        key: 'slack_url',
+        group: 'slack',
+        updated_at: '2022-05-05T18:33:09.168Z',
+        updated_by: 1,
+        value: ''
     }
 ];

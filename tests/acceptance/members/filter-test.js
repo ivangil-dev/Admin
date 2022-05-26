@@ -3,7 +3,6 @@ import sinon from 'sinon';
 import {authenticateSession} from 'ember-simple-auth/test-support';
 import {blur, click, currentURL, fillIn, find, findAll, focus} from '@ember/test-helpers';
 import {datepickerSelect} from 'ember-power-datepicker/test-support';
-import {enableLabsFlag} from '../../helpers/labs-flag';
 import {enableNewsletters} from '../../helpers/newsletters';
 import {enableStripe} from '../../helpers/stripe';
 import {expect} from 'chai';
@@ -21,7 +20,6 @@ describe('Acceptance: Members filtering', function () {
     beforeEach(async function () {
         this.server.loadFixtures('configs');
         this.server.loadFixtures('settings');
-        enableLabsFlag(this.server, 'multipleProducts');
         enableStripe(this.server);
         enableNewsletters(this.server, true);
 
@@ -60,7 +58,7 @@ describe('Acceptance: Members filtering', function () {
         expect(find('[data-test-button="members-filter-actions"] span'), 'filter button').to.not.have.class('gh-btn-label-green');
 
         // standard columns are shown
-        expect(findAll('[data-test-table="members"] [data-test-table-column]').length).to.equal(3);
+        expect(findAll('[data-test-table="members"] [data-test-table-column]').length).to.equal(4);
     });
 
     describe('filtering', function () {
@@ -114,15 +112,15 @@ describe('Acceptance: Members filtering', function () {
         });
 
         it('can filter by tier', async function () {
-            // add some labels to test the selection dropdown
+            // add multiple tiers to activate tiers filtering
             const newsletter = this.server.create('newsletter', {status: 'active'});
-            this.server.createList('product', 4);
+            this.server.createList('tier', 4);
 
-            // add a labelled member so we can test the filter includes correctly
-            const product = this.server.create('product');
-            this.server.createList('member', 3, {products: [product], newsletters: [newsletter]});
+            // add some members with tiers
+            const tier = this.server.create('tier');
+            this.server.createList('member', 3, {tiers: [tier], newsletters: [newsletter]});
 
-            // add some non-labelled members so we can see the filter excludes correctly
+            // add some free members so we can see the filter excludes correctly
             this.server.createList('member', 4, {newsletters: [newsletter]});
 
             await visit('/members');
@@ -133,7 +131,7 @@ describe('Acceptance: Members filtering', function () {
 
             const filterSelector = `[data-test-members-filter="0"]`;
 
-            await fillIn(`${filterSelector} [data-test-select="members-filter"]`, 'product');
+            await fillIn(`${filterSelector} [data-test-select="members-filter"]`, 'tier');
 
             // has the right operators
             const operatorOptions = findAll(`${filterSelector} [data-test-select="members-filter-operator"] option`);
@@ -146,14 +144,14 @@ describe('Acceptance: Members filtering', function () {
             expect(findAll(`${filterSelector} [data-test-tiers-segment]`).length, '# of label options').to.equal(5);
 
             // selecting a value updates table
-            await selectChoose(`${filterSelector} .gh-tier-token-input`, product.name);
+            await selectChoose(`${filterSelector} .gh-tier-token-input`, tier.name);
 
-            expect(findAll('[data-test-list="members-list-item"]').length, `# of filtered member rows - ${product.name}`)
+            expect(findAll('[data-test-list="members-list-item"]').length, `# of filtered member rows - ${tier.name}`)
                 .to.equal(3);
             // table shows labels column+data
-            expect(find('[data-test-table-column="product"]')).to.exist;
-            expect(findAll('[data-test-table-data="product"]').length).to.equal(3);
-            expect(find('[data-test-table-data="product"]')).to.contain.text(product.name);
+            expect(find('[data-test-table-column="status"]')).to.exist;
+            expect(findAll('[data-test-table-data="status"]').length).to.equal(3);
+            expect(find('[data-test-table-data="status"]')).to.contain.text(tier.name);
 
             // can delete filter
             await click('[data-test-delete-members-filter="0"]');
@@ -1283,7 +1281,7 @@ describe('Acceptance: Members filtering', function () {
 
         it('hides paid filters when stripe isn\'t connected', async function () {
             // disconnect stripe
-            this.server.db.settings.update({key: 'stripe_connect_account_id'}, {value: null});
+            this.server.db.settings.update({key: 'paid_members_enabled'}, {value: false});
             this.server.createList('member', 10);
 
             await visit('/members');

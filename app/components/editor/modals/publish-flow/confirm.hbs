@@ -1,0 +1,104 @@
+<div class="gh-publish-title">
+    <div class="green">Ready, set, publish.</div>
+    <div>Share it with the world.</div>
+</div>
+<p class="gh-publish-confirmation">
+    {{#if @publishOptions.isScheduled}}
+        {{#let (moment-site-tz @publishOptions.scheduledAtUTC) as |scheduledAt|}}
+            On
+            <strong>
+                {{moment-format scheduledAt "D MMM YYYY"}}
+                at
+                {{moment-format scheduledAt "HH:mm"}}
+            </strong>
+            your
+        {{/let}}
+    {{else}}
+        Your
+    {{/if}}
+
+    {{@publishOptions.post.displayName}}
+
+    {{#if this.willPublish}}
+        will be published on your site{{#if this.willEmail}}, and delivered to{{else}}.{{/if}}
+    {{/if}}
+
+    {{#if this.willEmail}}
+        {{#unless this.willPublish}}
+            will be delivered to
+        {{/unless}}
+
+        {{#let (members-count-fetcher query=(hash filter=@publishOptions.fullRecipientFilter)) as |countFetcher|}}
+            <strong>
+                {{if (eq @recipientType "all") "all"}}
+
+                {{format-number countFetcher.count}}
+
+                {{!-- @recipientType = none/free/paid/all/specific --}}
+                {{if (not-eq @recipientType "all") @recipientType}}
+            </strong>
+
+            {{#if @publishOptions.onlyDefaultNewsletter}}
+                <strong>{{gh-pluralize countFetcher.count "subscriber" without-count=true}}</strong>{{#if this.willPublish}}.{{else}},{{/if}}
+            {{else}}
+                <strong>{{gh-pluralize countFetcher.count "subscriber" without-count=true}}</strong>
+                of <strong>{{@publishOptions.newsletter.name}}</strong>{{#if this.willPublish}}.{{else}},{{/if}}
+            {{/if}}
+        {{/let}}
+
+        {{#unless this.willPublish}}
+            and will <strong>not</strong> be published on your site.
+        {{/unless}}
+    {{/if}}
+</p>
+
+{{#if this.errorMessage}}
+    <p class="error gh-box gh-box-error mt3 mb3">
+        {{this.errorMessage}}
+    </p>
+{{/if}}
+
+<div class="gh-publish-cta">
+    {{#if @publishOptions.isScheduled}}
+        <GhTaskButton
+            @task={{this.confirmTask}}
+            @buttonText={{this.confirmButtonText}}
+            @runningText="Scheduling"
+            @successText="Scheduled"
+            @class="gh-btn gh-btn-large"
+            @idleClass="gh-btn-pulse"
+            @runningClass="gh-btn-green gh-btn-icon"
+        />
+    {{else if @publishOptions.willOnlyEmail}}
+        <GhTaskButton
+            @task={{this.confirmTask}}
+            @buttonText={{this.confirmButtonText}}
+            @runningText="Sending"
+            @successText="Sent"
+            @class="gh-btn gh-btn-large"
+            @idleClass="gh-btn-pulse"
+            @runningClass="gh-btn-green gh-btn-icon"
+        />
+    {{else if this.willEmail}}
+        <GhTaskButton
+            @task={{this.confirmTask}}
+            @buttonText={{this.confirmButtonText}}
+            @runningText="Publishing & sending"
+            @successText="Published & sent"
+            @class="gh-btn gh-btn-large"
+            @idleClass="gh-btn-pulse"
+            @runningClass="gh-btn-green gh-btn-icon"
+        />
+    {{else}}
+        <GhTaskButton
+            @task={{this.confirmTask}}
+            @buttonText={{this.confirmButtonText}}
+            @runningText="Publishing"
+            @successText="Published"
+            @class="gh-btn gh-btn-large"
+            @idleClass="gh-btn-pulse"
+            @runningClass="gh-btn-green gh-btn-icon"
+        />
+    {{/if}}
+    <button type="button" class="gh-btn gh-btn-link gh-btn-large gh-publish-cta-secondary" {{on "click" @cancel}}>Back to settings</button>
+</div>
