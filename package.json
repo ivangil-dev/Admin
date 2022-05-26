@@ -6,7 +6,7 @@
   "homepage": "http://ghost.org",
   "repository": {
     "type": "git",
-    "url": "git://github.com/TryGhost/Admin.git"
+    "url": "git://github.com/ivangil-dev/Admin.git"
   },
   "bugs": "https://github.com/TryGhost/Ghost/issues",
   "contributors": "https://github.com/TryGhost/Admin/graphs/contributors",
