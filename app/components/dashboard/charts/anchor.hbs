@@ -14,16 +14,16 @@
                     @horizontalPosition="left"
                     as |option|
                 >
-                    {{#if option.name}}{{option.name}}{{else}}<span class="red">Unknown option</span>{{/if}}
+                    {{#if option.name}}{{option.name}}{{else}}<span class="red">Opción desconocida</span>{{/if}}
                 </PowerSelect>
             </div>
         {{else}}
             <Dashboard::Parts::Metric
-                @label="Total members"
+                @label="Total miembros"
                 @value={{format-number this.totalMembers}}
                 @trends={{this.hasTrends}}
                 @percentage={{this.totalMembersTrend}}
-                @large={{true}} /> 
+                @large={{true}} />
         {{/if}}
 
         <div class="gh-dashboard-hero {{unless this.hasPaidTiers 'is-solo'}}">
@@ -33,7 +33,7 @@
                         {{#if this.loading}}
                             <div class="gh-dashboard-chart-loading">
                                 <div class="gh-loading-spinner"></div>
-                            </div>      
+                            </div>
                         {{else}}
                             <EmberChart
                                 @type={{this.chartType}}

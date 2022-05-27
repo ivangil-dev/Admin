@@ -238,7 +238,7 @@ export default Component.extend({
         if (this.tier) {
             this.tier.set('monthlyPrice', 500);
             this.tier.set('yearlyPrice', 5000);
-            this.tier.set('currency', 'usd');
+            this.tier.set('currency', 'eur');
             let pollTimeout = 0;
             /** To allow Stripe config to be ready in backend, we poll the save tier request */
             while (pollTimeout < RETRY_PRODUCT_SAVE_MAX_POLL) {

@@ -7,9 +7,9 @@ import loadInitializers from 'ember-load-initializers';
 import moment from 'moment';
 import {registerWarnHandler} from '@ember/debug';
 
-moment.updateLocale('en', {
+moment.updateLocale('es', {
     relativeTime: {
-        m: '1 minute'
+        m: '1 minuto'
     }
 });
 

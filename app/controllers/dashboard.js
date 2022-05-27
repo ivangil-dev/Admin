@@ -5,13 +5,13 @@ import {task} from 'ember-concurrency';
 
 // Options 30 and 90 need an extra day to be able to distribute ticks/gridlines evenly
 const DAYS_OPTIONS = [{
-    name: '7 Days',
+    name: '7 Días',
     value: 7
 }, {
-    name: '30 Days',
+    name: '30 Días',
     value: 30 + 1
 }, {
-    name: '90 Days',
+    name: '90 Días',
     value: 90 + 1
 }];
 

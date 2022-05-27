@@ -6,10 +6,10 @@ import {inject as service} from '@ember/service';
 import {tracked} from '@glimmer/tracking';
 
 const MODE_OPTIONS = [{
-    name: 'Cadence',
+    name: 'Periodos',
     value: 'cadence'
 }, {
-    name: 'Tiers',
+    name: 'Tipo',
     value: 'tiers'
 }];
 
@@ -54,7 +54,7 @@ Chart.elements.Rectangle.prototype.draw = function () {
         bottom = vm.y + vm.height / 2;
         borderSkipped = vm.borderSkipped || 'left';
     }
-    
+
     ctx.beginPath();
     ctx.fillStyle = vm.backgroundColor;
     ctx.strokeStyle = vm.borderColor;
@@ -196,7 +196,7 @@ export default class PaidMix extends Component {
     @service dashboardStats;
 
     /**
-     * Call this method when you need to fetch new data from the server. 
+     * Call this method when you need to fetch new data from the server.
      */
     @action
     loadCharts() {
@@ -218,7 +218,7 @@ export default class PaidMix extends Component {
 
     get hasMultipleTiers() {
         return this.dashboardStats.siteStatus?.hasMultipleTiers;
-    } 
+    }
 
     get totalMembers() {
         return this.dashboardStats.memberCounts?.total ?? 0;
@@ -228,7 +228,7 @@ export default class PaidMix extends Component {
         return this.dashboardStats.memberCounts?.total === 0;
     }
 
-    @action 
+    @action
     onSwitchMode(selected) {
         this.mode = selected.value;
 
@@ -244,7 +244,7 @@ export default class PaidMix extends Component {
         }
         return this.dashboardStats.paidMembersByTier === null;
     }
-    
+
     get chartType() {
         return 'horizontalBar';
     }
@@ -269,7 +269,7 @@ export default class PaidMix extends Component {
         const annualPercentage = Math.round(this.dashboardStats.paidMembersByCadence.year / totalCadence * 100);
         const barThickness = 5;
 
-        if (this.mode === 'cadence') {    
+        if (this.mode === 'cadence') {
             // there has to be negative values to make rounded corners work
             // empty chart render when there is no data
             if (totalCadence === 0 && !this.isTotalMembersZero) {
@@ -355,7 +355,7 @@ export default class PaidMix extends Component {
             let tierPercentage = Math.round(data[i] / totalTiersAmount * 100);
 
             // The first value has to be negative to make rounded corners work
-            if (i === 0) { 
+            if (i === 0) {
                 tierPercentage = -tierPercentage;
             }
             datasets.push({
@@ -450,7 +450,7 @@ export default class PaidMix extends Component {
                     // only show tooltip when active
                     if (tooltip.opacity === 0) {
                         tooltipEl.style.opacity = 0;
-                        return; 
+                        return;
                     }
 
                     let offsetX = 0;
@@ -464,7 +464,7 @@ export default class PaidMix extends Component {
                     } else {
                         if (tooltip.x > chartWidth - tooltipWidth) {
                             offsetX = tooltipWidth - 10;
-                        } 
+                        }
                     }
 
                     // update tooltip styles

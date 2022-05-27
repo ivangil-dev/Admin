@@ -65,7 +65,7 @@ describe('Acceptance: Member details', function () {
                         nickname: 'Monthly',
                         amount: 500,
                         interval: 'month',
-                        currency: 'USD'
+                        currency: 'EUR'
                     },
                     status: 'canceled',
                     start_date: '2022-03-03T15:31:27.000Z',
@@ -80,7 +80,7 @@ describe('Acceptance: Member details', function () {
                         amount: 500,
                         interval: 'month',
                         type: 'recurring',
-                        currency: 'USD',
+                        currency: 'EUR',
                         tier: {
                             id: 'prod_LFmAAmCnnbzrvL',
                             name: 'Ghost Subscription',
@@ -102,7 +102,7 @@ describe('Acceptance: Member details', function () {
                         nickname: 'Monthly',
                         amount: 500,
                         interval: 'month',
-                        currency: 'USD'
+                        currency: 'EUR'
                     },
                     status: 'active',
                     start_date: '2022-03-03T15:36:58.000Z',
@@ -117,7 +117,7 @@ describe('Acceptance: Member details', function () {
                         amount: 500,
                         interval: 'month',
                         type: 'recurring',
-                        currency: 'USD',
+                        currency: 'EUR',
                         tier: {
                             id: 'prod_LFmAAmCnnbzrvL',
                             name: 'Ghost Subscription',
@@ -159,7 +159,7 @@ describe('Acceptance: Member details', function () {
                         nickname: 'Monthly',
                         amount: 500,
                         interval: 'month',
-                        currency: 'USD'
+                        currency: 'EUR'
                     },
                     status: 'canceled',
                     start_date: '2022-03-03T15:31:27.000Z',
@@ -174,7 +174,7 @@ describe('Acceptance: Member details', function () {
                         amount: 500,
                         interval: 'month',
                         type: 'recurring',
-                        currency: 'USD',
+                        currency: 'EUR',
                         tier: {
                             id: 'prod_LFmAAmCnnbzrvL',
                             name: 'Ghost Subscription',

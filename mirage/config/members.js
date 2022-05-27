@@ -198,7 +198,7 @@ export default function mockMembers(server) {
                             id: '',
                             nickname: 'Complimentary',
                             interval: 'year',
-                            currency: 'USD',
+                            currency: 'EUR',
                             amount: 0
                         },
                         status: 'active',
@@ -214,7 +214,7 @@ export default function mockMembers(server) {
                             amount: 0,
                             interval: 'year',
                             type: 'recurring',
-                            currency: 'USD',
+                            currency: 'EUR',
                             tier: {
                                 id: '',
                                 tier_id: tier.id

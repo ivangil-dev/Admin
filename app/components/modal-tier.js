@@ -28,7 +28,7 @@ export default class ModalTierPrice extends ModalBase {
     @tracked periodVal;
     @tracked stripeMonthlyAmount = 5;
     @tracked stripeYearlyAmount = 50;
-    @tracked currency = 'usd';
+    @tracked currency = 'eur';
     @tracked errors = EmberObject.create();
     @tracked stripePlanError = '';
     @tracked benefits = emberA([]);

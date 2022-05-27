@@ -398,7 +398,7 @@ export default class DashboardMocksService extends Service {
             return {
                 date: s.date,
                 mrr: s.tier1 * 501 + s.tier2 * 2500,
-                currency: 'usd'
+                currency: 'eur'
             };
         });
     }

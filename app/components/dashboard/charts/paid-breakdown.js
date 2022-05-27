@@ -188,7 +188,7 @@ export default class PaidBreakdown extends Component {
     }
 
     get chartTitle() {
-        return 'Paid subscribers';
+        return 'Suscriptores de pago';
     }
 
     get chartType() {
@@ -204,7 +204,7 @@ export default class PaidBreakdown extends Component {
 
         if (newData.length >= 30 + 1 && newData.length < 90) {
             barThickness = 3.5;
-        } else if (newData.length >= 90) {   
+        } else if (newData.length >= 90) {
             barThickness = 1.5;
         }
 
@@ -271,7 +271,7 @@ export default class PaidBreakdown extends Component {
                     if (tooltip.opacity === 0) {
                         tooltipEl.style.display = 'none';
                         tooltipEl.style.opacity = 0;
-                        return; 
+                        return;
                     }
 
                     let offsetX = 0;
@@ -284,7 +284,7 @@ export default class PaidBreakdown extends Component {
                     tooltipEl.style.opacity = 1;
                     tooltipEl.style.position = 'absolute';
                     tooltipEl.style.left = tooltip.x - offsetX + 'px';
-                    tooltipEl.style.top = '70px';    
+                    tooltipEl.style.top = '70px';
                 },
                 callbacks: {
                     label: (tooltipItems, data) => {

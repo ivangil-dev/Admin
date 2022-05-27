@@ -2,12 +2,12 @@
     <div class="gh-dashboard-content">
         <div class="gh-dashboard-data">
             <Dashboard::Parts::Metric
-                @label="Paid mix" /> 
+                @label="Mix de pagos" />
 
             {{#if this.isChartCadence}}
                 <div class="gh-dashboard-legend">
-                    <div class="gh-dashboard-legend-item">Monthly</div>
-                    <div class="gh-dashboard-legend-item">Annual</div>
+                    <div class="gh-dashboard-legend-item">Mensual</div>
+                    <div class="gh-dashboard-legend-item">Anual</div>
                 </div>
             {{/if}}
         </div>
@@ -23,14 +23,14 @@
                             @type={{this.chartType}}
                             @data={{this.chartData}}
                             @options={{this.chartOptions}}
-                            @height={{110}} /> 
+                            @height={{110}} />
                     </div>
 
                     <div id="gh-dashboard-mix-tooltip" class="gh-dashboard-tooltip">
                         <div class="gh-dashboard-tooltip-value">
                             -
                         </div>
-                    </div> 
+                    </div>
                 </div>
             {{/if}}
         </div>
@@ -50,7 +50,7 @@
                 @horizontalPosition="right"
                 as |option|
             >
-                {{#if option.name}}{{option.name}}{{else}}<span class="red">Unknown option</span>{{/if}}
+                {{#if option.name}}{{option.name}}{{else}}<span class="red">Opción desconocida</span>{{/if}}
             </PowerSelect>
         </div>
     {{/if}}

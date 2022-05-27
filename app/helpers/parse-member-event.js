@@ -73,72 +73,72 @@ function getIcon(event) {
 
 function getAction(event) {
     if (event.type === 'signup_event') {
-        return 'signed up';
+        return 'inscrito';
     }
 
     if (event.type === 'login_event') {
-        return 'logged in';
+        return 'conectado';
     }
 
     if (event.type === 'payment_event') {
-        return 'made a payment';
+        return 'realizó un pago';
     }
 
     if (event.type === 'newsletter_event') {
         if (event.data.subscribed) {
-            return 'subscribed to';
+            return 'suscrito a';
         } else {
-            return 'unsubscribed from';
+            return 'baja en';
         }
     }
 
     if (event.type === 'subscription_event') {
         if (event.data.type === 'created') {
-            return 'started';
+            return 'comenzó';
         }
         if (event.data.type === 'updated') {
-            return 'changed';
+            return 'cambió';
         }
         if (event.data.type === 'canceled') {
-            return 'canceled';
+            return 'cancelada';
         }
         if (event.data.type === 'reactivated') {
-            return 'reactivated';
+            return 'reactivada';
         }
         if (event.data.type === 'expired') {
-            return 'ended';
+            return 'terminada';
         }
 
-        return 'changed';
+        return 'cambió';
     }
 
     if (event.type === 'email_opened_event') {
-        return 'opened';
+        return 'abrió';
     }
 
     if (event.type === 'email_delivered_event') {
-        return 'received';
+        return 'recibió';
     }
 
     if (event.type === 'email_failed_event') {
-        return 'failed to receive';
+        return 'fallo al recibir';
     }
 }
 
 function getObject(event, hasMultipleNewsletters) {
     if (event.type === 'newsletter_event') {
         if (hasMultipleNewsletters && event.data.newsletter && event.data.newsletter.name) {
-            return 'newsletter – ' + event.data.newsletter.name;
+            return 'Boletin informativo – ' + event.data.newsletter.name;
         }
-        return 'newsletter';
+        return 'Boletin informativo';
     }
 
     if (event.type === 'subscription_event') {
-        return 'their subscription';
+        return 'su suscripción';
     }
 
     if (event.type.match?.(/^email_/)) {
-        return 'an email';
+        return 'un correo electrónico';
     }
 
     return '';

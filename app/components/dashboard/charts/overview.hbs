@@ -3,27 +3,27 @@
         <div class="gh-dashboard-columns">
             <div class="gh-dashboard-column">
                 <Dashboard::Parts::Metric
-                    @label={{gh-pluralize this.totalMembers "Total member" without-count=true}}
+                    @label='Usuarios totales'
                     @value={{this.totalMembersFormatted}}
                     @trends={{this.hasTrends}}
                     @percentage={{this.totalMembersTrend}}
-                    @large={{true}} /> 
+                    @large={{true}} />
             </div>
             <div class="gh-dashboard-column">
                 <Dashboard::Parts::Metric
-                    @label={{gh-pluralize this.paidMembers "Paid member" without-count=true}}
+                    @label='Usuarios de pago'
                     @value={{this.paidMembersFormatted}}
                     @trends={{this.hasTrends}}
                     @percentage={{this.paidMembersTrend}}
-                    @large={{true}} /> 
+                    @large={{true}} />
             </div>
             <div class="gh-dashboard-column">
                 <Dashboard::Parts::Metric
-                    @label={{gh-pluralize this.freeMembers "Free member" without-count=true}}
+                    @label='Usuarios de plan gratuito'
                     @value={{this.freeMembersFormatted}}
                     @trends={{this.hasTrends}}
                     @percentage={{this.freeMembersTrend}}
-                    @large={{true}} /> 
+                    @large={{true}} />
             </div>
         </div>
     </article>

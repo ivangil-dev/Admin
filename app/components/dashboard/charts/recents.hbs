@@ -3,24 +3,24 @@
         <div class="gh-dashboard-tabs">
             <button type="button" class="gh-dashboard-tab {{if this.postsTabSelected 'is-selected'}}" {{on "click" this.changeTabToPosts}}>
                 <Dashboard::Parts::Metric
-                    @label="Recent posts" /> 
+                    @label="Artículos recientes" />
             </button>
             {{#if this.areMembersEnabled}}
                 <button type="button" class="gh-dashboard-tab {{if this.activityTabSelected 'is-selected'}}" {{on "click" this.changeTabToActivity}}>
                     <Dashboard::Parts::Metric
-                        @label="Member activity" /> 
-                </button>          
+                        @label="Actividad de usuarios" />
+                </button>
             {{/if}}
         </div>
         {{#if this.postsTabSelected}}
             <div class="gh-dashboard-recents-posts gh-dashboard-list {{unless this.areNewslettersEnabled 'is-single'}}">
-                <div class="gh-dashboard-list-header">  
-                    <div class="gh-dashboard-list-title">Title</div>
+                <div class="gh-dashboard-list-header">
+                    <div class="gh-dashboard-list-title">Título</div>
                     {{#if this.areNewslettersEnabled}}
-                        <div class="gh-dashboard-list-title">Sends</div>
-                        <div class="gh-dashboard-list-title">Open rate</div>
+                        <div class="gh-dashboard-list-title">Enviados</div>
+                        <div class="gh-dashboard-list-title">Tasa de apertura</div>
                     {{else}}
-                        <div class="gh-dashboard-list-title">Published</div>
+                        <div class="gh-dashboard-list-title">Publicado</div>
                     {{/if}}
                 </div>
                 <div class="gh-dashboard-list-body">
@@ -40,8 +40,8 @@
                                     </span>
                                 </div>
                                 <div class="gh-dashboard-list-item-sub">
-                                    <span class="gh-dashboard-rate-bar">  
-                                        {{#if post.email}}          
+                                    <span class="gh-dashboard-rate-bar">
+                                        {{#if post.email}}
                                             <span class="gh-dashboard-metric-minivalue">{{post.email.openRate}}%</span>
                                             <span class="gh-dashboard-rate-amount"><span style={{html-safe (concat "width: " post.email.openRate "%;")}}/></span>
                                         {{else}}
@@ -57,32 +57,32 @@
                         </LinkTo>
                     {{else}}
                         <div class="gh-dashboard-list-empty">
-                            <p>No published posts yet.</p>
+                            <p>No hay artículos publicados todavía.</p>
                         </div>
                     {{/each}}
                 </div>
                 <div class="gh-dashboard-list-footer">
-                    <LinkTo @route="posts" @query={{reset-query-params "posts"}}>See all posts &rarr;</LinkTo>
+                    <LinkTo @route="posts" @query={{reset-query-params "posts"}}>Ver todos los artículos &rarr;</LinkTo>
                 </div>
             </div>
         {{else}}
             <div class="gh-dashboard-recents-activity gh-dashboard-list" data-test-dashboard-member-activity>
-                <div class="gh-dashboard-list-header">  
-                    <div class="gh-dashboard-list-title">Member</div>
-                    <div class="gh-dashboard-list-title">Event</div>
-                    <div class="gh-dashboard-list-title">Time</div>
+                <div class="gh-dashboard-list-header">
+                    <div class="gh-dashboard-list-title">Usuario</div>
+                    <div class="gh-dashboard-list-title">Evento</div>
+                    <div class="gh-dashboard-list-title">Fecha</div>
                 </div>
                 <div class="gh-dashboard-list-body">
-                    {{#let (members-event-fetcher filter=(members-event-filter excludeEmailEvents=true) pageSize=5) as |eventsFetcher|}}     
+                    {{#let (members-event-fetcher filter=(members-event-filter excludeEmailEvents=true) pageSize=5) as |eventsFetcher|}}
                         {{#if eventsFetcher.isError}}
                             <div class="gh-dashboard-list-error">
-                                <p>There was an error loading events</p>
+                                <p>Hubo un error de carga de eventos</p>
                                 {{#if eventsFetcher.errorMessage}}
                                     <code>{{eventsFetcher.errorMessage}}</code>
                                 {{/if}}
                             </div>
                         {{/if}}
-                        
+
                         {{#if eventsFetcher.isLoading}}
                             <div class="gh-dashboard-list-loading">
                                 <div class="gh-loading-spinner"></div>
@@ -91,7 +91,7 @@
                             {{#if eventsFetcher.data}}
                                 {{#each eventsFetcher.data as |event|}}
                                     {{#let (parse-member-event event eventsFetcher.hasMultipleNewsletters) as |parsedEvent|}}
-                                        <LinkTo class="gh-dashboard-list-item member-details" @route="member" @model="{{parsedEvent.memberId}}" data-test-dashboard-member-activity-item> 
+                                        <LinkTo class="gh-dashboard-list-item member-details" @route="member" @model="{{parsedEvent.memberId}}" data-test-dashboard-member-activity-item>
                                             <div class="gh-dashboard-list-item-sub">
                                                 <GhMemberAvatar @member={{parsedEvent.member}} @containerClass="w8 h8 mr3 flex-shrink-0" />
                                                 <span class="gh-dashboard-list-text">{{parsedEvent.subject}}</span>
