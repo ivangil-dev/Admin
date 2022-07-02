@@ -791,6 +791,11 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 2rem;
+    overflow: hidden;
+}
+
+.gh-post-bookmark-content.no-image {
+    grid-column: span 2;
 }
 
 .gh-post-bookmark-title {
