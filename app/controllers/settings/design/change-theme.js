@@ -13,6 +13,13 @@ export default class ChangeThemeController extends Controller {
     themes = this.store.peekAll('theme');
 
     officialThemes = [{
+        name: 'Linneo',
+        category: 'Blog',
+        url: 'https://github.com/ivangil-dev/Linneo',
+        previewUrl: 'https://omniscientia.es/',
+        ref: 'ivangil-dev/Linneo',
+        image: 'assets/img/themes/Linneo.jpg'
+    },{
         name: 'Casper',
         category: 'Blog',
         previewUrl: 'https://demo.ghost.io/',
