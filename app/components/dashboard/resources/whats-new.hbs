@@ -1,8 +1,8 @@
 <section class="gh-dashboard-resource gh-dashboard-whats-new" {{did-insert this.load}}>
     <article class="gh-dashboard-resource-box">
         <div class="gh-dashboard-resource-title is-large has-border">
-            <h4>What's new</h4>
-            <p>All the latest improvements.</p>
+            <h4>¿Qué hay de nuevo?</h4>
+            <p>Todas las últimas mejoras y añadidos.</p>
         </div>
         <div class="gh-dashboard-resource-body">
              <div class="gh-dashboard-list {{if this.whatsNew.hasNew "has-new"}}">
@@ -19,7 +19,7 @@
                             </div>
                         {{else}}
                             <div class="gh-dashboard-list-empty">
-                                <p>No new features yet.</p>
+                                <p>Todavía no hay nuevas características.</p>
                             </div>
                         {{/each}}
                     </div>
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="gh-dashboard-resource-footer">
-            <LinkTo @route="whatsnew" @query={{hash entry=null}} class="green">See more features &rarr;</LinkTo>
+            <LinkTo @route="whatsnew" @query={{hash entry=null}} class="green">Ver más características añadidas &rarr;</LinkTo>
         </div>
     </article>
 </section>

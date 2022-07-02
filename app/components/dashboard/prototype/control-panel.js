@@ -5,47 +5,47 @@ import {tracked} from '@glimmer/tracking';
 
 const STATE_OPTIONS = [
     {
-        name: 'No data',
+        name: 'Sin datos',
         value: {
             days: 0
         }
-    }, 
+    },
     {
-        name: '7 days',
+        name: '7 dias',
         value: {
             days: 7
         }
-    }, 
+    },
     {
-        name: '30 days',
+        name: '30 dias',
         value: {
             days: 30
         }
-    }, 
+    },
     {
-        name: '90 days',
+        name: '90 dias',
         value: {
             days: 90
         }
-    }, 
+    },
     {
-        name: 'One year',
+        name: 'Un año',
         value: {
             days: 365
-        } 
-    }, 
+        }
+    },
     {
-        name: 'Two years',
+        name: 'Dos años',
         value: {
             days: 730
-        } 
+        }
     }
 ];
 
 export default class ControlPanel extends Component {
     @service dashboardStats;
     @service dashboardMocks;
-    
+
     stateOptions = STATE_OPTIONS;
 
     @tracked state = STATE_OPTIONS[1].value;
@@ -105,7 +105,7 @@ export default class ControlPanel extends Component {
         return this.stateOptions.find(option => option.value.days === this.state.days);
     }
 
-    @action 
+    @action
     onStateChange(option) {
         this.state = option.value;
         this.updateMockedData();
@@ -113,7 +113,7 @@ export default class ControlPanel extends Component {
     }
 
     @action
-    updateMockedData() {    
+    updateMockedData() {
         this.dashboardMocks.updateMockedData(this.state);
     }
 

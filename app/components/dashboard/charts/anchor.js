@@ -10,13 +10,13 @@ import {tracked} from '@glimmer/tracking';
 const DATE_FORMAT = 'D MMM, YYYY';
 
 const DISPLAY_OPTIONS = [{
-    name: 'Total members',
+    name: 'Miembros totales',
     value: 'total'
 }, {
-    name: 'Paid members',
+    name: 'Miembros de pago',
     value: 'paid'
 }, {
-    name: 'Free members',
+    name: 'Miembros plan gratuito',
     value: 'free'
 }];
 
@@ -63,7 +63,7 @@ export default class Anchor extends Component {
         }
     }
 
-    @action 
+    @action
     onDisplayChange(selected) {
         this.chartDisplay = selected.value;
     }
@@ -93,7 +93,7 @@ export default class Anchor extends Component {
     }
 
     get hasTrends() {
-        return this.dashboardStats.memberCounts !== null 
+        return this.dashboardStats.memberCounts !== null
             && this.dashboardStats.memberCountsTrend !== null;
     }
 
@@ -120,13 +120,13 @@ export default class Anchor extends Component {
     get chartTitle() {
         // paid
         if (this.chartDisplay === 'paid') {
-            return 'Paid members';
+            return 'Miembros de pago';
         // free
         } else if (this.chartDisplay === 'free') {
-            return 'Free members';
+            return 'Miembros plan gratuito';
         }
         // total
-        return 'Total members';
+        return 'Miembros totales';
     }
 
     get chartData() {
@@ -162,16 +162,16 @@ export default class Anchor extends Component {
         const canvasLine = document.createElement('canvas');
         const ctxLine = canvasLine.getContext('2d');
         const gradientLine = ctxLine.createLinearGradient(0, 0, 1000, 0);
-        gradientLine.addColorStop(0, 'rgba(250, 45, 142, 1');   
+        gradientLine.addColorStop(0, 'rgba(250, 45, 142, 1');
         gradientLine.addColorStop(1, 'rgba(143, 66, 255, 1');
-  
+
         // gradient for fill
         const canvasFill = document.createElement('canvas');
         const ctxFill = canvasFill.getContext('2d');
         const gradientFill = ctxFill.createLinearGradient(0, 0, 1000, 0);
-        gradientFill.addColorStop(0, 'rgba(250, 45, 142, 0.2');   
+        gradientFill.addColorStop(0, 'rgba(250, 45, 142, 0.2');
         gradientFill.addColorStop(1, 'rgba(143, 66, 255, 0.1');
-        
+
         return {
             labels: labels,
             datasets: [{
@@ -198,8 +198,8 @@ export default class Anchor extends Component {
         if (this.dashboardStats.mrrStats === null) {
             return '';
         }
-        
-        const firstCurrency = this.dashboardStats.mrrStats[0] ? this.dashboardStats.mrrStats[0].currency : 'usd';
+
+        const firstCurrency = this.dashboardStats.mrrStats[0] ? this.dashboardStats.mrrStats[0].currency : 'eur';
         return getSymbol(firstCurrency);
     }
 
@@ -244,7 +244,7 @@ export default class Anchor extends Component {
                     // only show tooltip when active
                     if (tooltip.opacity === 0) {
                         tooltipEl.style.opacity = 0;
-                        return; 
+                        return;
                     }
 
                     // update tooltip styles

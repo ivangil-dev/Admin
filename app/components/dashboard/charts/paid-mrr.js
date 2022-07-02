@@ -57,7 +57,7 @@ export default class PaidMrr extends Component {
     }
 
     get chartTitle() {
-        return 'MRR';
+        return 'Ingresos recurrentes mensuales (MRR)';
     }
 
     get chartType() {
@@ -76,8 +76,8 @@ export default class PaidMrr extends Component {
         if (this.dashboardStats.mrrStats === null) {
             return '';
         }
-        
-        const firstCurrency = this.dashboardStats.mrrStats[0] ? this.dashboardStats.mrrStats[0].currency : 'usd';
+
+        const firstCurrency = this.dashboardStats.mrrStats[0] ? this.dashboardStats.mrrStats[0].currency : 'eur';
         return getSymbol(firstCurrency);
     }
 
@@ -92,7 +92,7 @@ export default class PaidMrr extends Component {
         }
 
         const valueText = ghPriceAmount(this.currentMRR, {cents: false});
-        return `${this.mrrCurrencySymbol}${valueText}`;
+        return `${valueText}${this.mrrCurrencySymbol}`;
     }
 
     get chartData() {
@@ -111,7 +111,7 @@ export default class PaidMrr extends Component {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         const gradient = ctx.createLinearGradient(0, 0, 0, 120);
-        gradient.addColorStop(0, 'rgba(143, 66, 255, 0.15'); 
+        gradient.addColorStop(0, 'rgba(143, 66, 255, 0.15');
         gradient.addColorStop(1, 'rgba(143, 66, 255, 0.0');
 
         return {
@@ -178,7 +178,7 @@ export default class PaidMrr extends Component {
                     // only show tooltip when active
                     if (tooltip.opacity === 0) {
                         tooltipEl.style.opacity = 0;
-                        return; 
+                        return;
                     }
 
                     let offsetX = 0;
@@ -190,11 +190,11 @@ export default class PaidMrr extends Component {
                     tooltipEl.style.opacity = 1;
                     tooltipEl.style.position = 'absolute';
                     tooltipEl.style.left = tooltip.x - offsetX + 'px';
-                    tooltipEl.style.top = tooltip.y + 'px';    
+                    tooltipEl.style.top = tooltip.y + 'px';
                 },
                 callbacks: {
                     label: (tooltipItems, data) => {
-                        const value = `${that.mrrCurrencySymbol}${ghPriceAmount(data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index], {cents: false})}`;
+                        const value = `${ghPriceAmount(data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index], {cents: false})}${that.mrrCurrencySymbol}`;
                         document.querySelector('#gh-dashboard-mrr-tooltip .gh-dashboard-tooltip-value .value').innerHTML = value;
                     },
                     title: (tooltipItems) => {
@@ -249,152 +249,152 @@ export default class PaidMrr extends Component {
                 {
                     date: '2022-04-07',
                     mrr: 0,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-08',
                     mrr: 0,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-09',
                     mrr: 1500,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-10',
                     mrr: 2000,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-11',
                     mrr: 4500,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-12',
                     mrr: 7500,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-13',
                     mrr: 11000,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-14',
                     mrr: 12500,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-15',
                     mrr: 14500,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-16',
                     mrr: 18000,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-17',
                     mrr: 21500,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-18',
                     mrr: 25000,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-19',
                     mrr: 28000,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-20',
                     mrr: 30000,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-21',
                     mrr: 34000,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-22',
                     mrr: 35000,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-23',
                     mrr: 35500,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-24',
                     mrr: 37000,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-25',
                     mrr: 38000,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-26',
                     mrr: 40500,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-27',
                     mrr: 43500,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-28',
                     mrr: 47000,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-29',
                     mrr: 48000,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-04-30',
                     mrr: 50500,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-05-01',
                     mrr: 53500,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-05-02',
                     mrr: 55000,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-05-03',
                     mrr: 56500,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-05-04',
                     mrr: 57000,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-05-05',
                     mrr: 58000,
-                    currency: 'usd'
+                    currency: 'eur'
                 },
                 {
                     date: '2022-05-06',
                     mrr: 58500,
-                    currency: 'usd'
+                    currency: 'eur'
                 }
             ],
             labels: [
