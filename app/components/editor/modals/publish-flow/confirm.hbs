@@ -1,31 +1,31 @@
 <div class="gh-publish-title" data-test-publish-flow="confirm">
-    <div class="green">Ready, set, publish.</div>
-    <div>Share it with the world.</div>
+    <div class="green">Preparados, listos, a publicar.</div>
+    <div>Compártelo con el mundo.</div>
 </div>
 <p class="gh-publish-confirmation" data-test-text="confirm-details">
     {{#if @publishOptions.isScheduled}}
         {{#let (moment-site-tz @publishOptions.scheduledAtUTC) as |scheduledAt|}}
-            On
+            En
             <strong>
                 {{moment-format scheduledAt "D MMM YYYY"}}
-                at
+                a
                 {{moment-format scheduledAt "HH:mm"}}
             </strong>
-            your
+            tu
         {{/let}}
     {{else}}
-        Your
+        Tu
     {{/if}}
 
     {{@publishOptions.post.displayName}}
 
     {{#if this.willPublish}}
-        will be published on your site{{#if this.willEmail}}, and delivered to{{else}}.{{/if}}
+        se publicará en tu sitio{{#if this.willEmail}}, y se entregará a{{else}}.{{/if}}
     {{/if}}
 
     {{#if this.willEmail}}
         {{#unless this.willPublish}}
-            will be delivered to
+            será entregado a
         {{/unless}}
 
         {{#let (members-count-fetcher query=(hash filter=@publishOptions.fullRecipientFilter)) as |countFetcher|}}
@@ -42,12 +42,12 @@
                 <strong>{{gh-pluralize countFetcher.count "subscriber" without-count=true}}</strong>{{#if this.willPublish}}.{{else}},{{/if}}
             {{else}}
                 <strong>{{gh-pluralize countFetcher.count "subscriber" without-count=true}}</strong>
-                of <strong>{{@publishOptions.newsletter.name}}</strong>{{#if this.willPublish}}.{{else}},{{/if}}
+                de <strong>{{@publishOptions.newsletter.name}}</strong>{{#if this.willPublish}}.{{else}},{{/if}}
             {{/if}}
         {{/let}}
 
         {{#unless this.willPublish}}
-            and will <strong>not</strong> be published on your site.
+            y <strong>no</strong> se publicará en la web.
         {{/unless}}
     {{/if}}
 </p>

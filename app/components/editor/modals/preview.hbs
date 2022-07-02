@@ -1,7 +1,7 @@
 <div class="flex flex-column h-100">
     <header class="modal-header gh-post-preview-header" data-test-modal="preview-email">
         <div class="left">
-            <button class="gh-btn-editor gh-editor-back-button" title="Close" type="button" {{on "click" @close}}>
+            <button class="gh-btn-editor gh-editor-back-button" title="Cerrar" type="button" {{on "click" @close}}>
                 <span>{{svg-jar "arrow-left"}} Editor</span>
             </button>
         </div>
@@ -23,14 +23,14 @@
                 class="gh-btn gh-btn-editor gh-editor-preview-trigger active"
                 {{on "click" @close}}
             >
-                <span>Preview</span>
+                <span>Vista previa</span>
             </button>
 
             {{#if @data.publishOptions.user.isContributor}}
                 <GhTaskButton
-                    @buttonText="Save"
+                    @buttonText="Guardar"
                     @task={{@data.saveTask}}
-                    @runningText="Saving"
+                    @runningText="Guardando"
                     @class="gh-btn gh-btn-icon gh-btn-editor gh-editor-save-trigger contributor-save-button"
                     data-test-preview-contributor-save />
             {{else}}
@@ -39,7 +39,7 @@
                     class="gh-btn gh-btn-editor darkgrey gh-publish-trigger"
                     {{on "click" @data.togglePreviewPublish}}
                 >
-                    <span>Publish</span>
+                    <span>Publicar</span>
                 </button>
             {{/if}}
 

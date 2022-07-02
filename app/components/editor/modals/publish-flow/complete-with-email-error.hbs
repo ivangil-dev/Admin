@@ -1,18 +1,18 @@
 {{#let @publishOptions.post as |post|}}
     <div class="gh-publish-title">
-        <span class="red">Uh-oh.</span>
+        <span class="red">Oh oh.</span>
 
         {{#if @publishOptions.willOnlyEmail}}
-            Your post has been created but the email failed to send.
+            Tu publicación se ha creado pero el correo electrónico no se ha podido enviar.
         {{else}}
-            Your {{post.displayName}} has been published but the email failed to send.
+            Tu publicación se ha publicado pero el correo electrónico no se ha podido enviar.
         {{/if}}
     </div>
 
     <p class="gh-publish-confirmation">
         {{this.emailErrorMessage}}
         <br><br>
-        Please verify your email settings if the error persists.
+        Verifique la configuración de correo electrónico si el error persiste.
     </p>
 
     {{#if this.retryErrorMessage}}
@@ -24,9 +24,9 @@
     <div class="gh-publish-cta">
         <GhTaskButton
             @task={{this.retryEmailTask}}
-            @buttonText="Retry sending email"
-            @runningText="Sending"
-            @successText="Sent"
+            @buttonText="Volver a intentar enviar el correo electrónico"
+            @runningText="Enviando"
+            @successText="Enviar"
             @class="gh-btn gh-btn-large gh-btn-red"
             @showIcon={{false}}
         />

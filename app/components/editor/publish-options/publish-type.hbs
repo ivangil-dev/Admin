@@ -23,11 +23,11 @@
     </p>
 {{else if (eq @publishOptions.totalMemberCount 0)}}
     <p class="gh-box gh-content-box" data-test-publish-type-error="no-members">
-        <LinkTo @route="members">Add members</LinkTo>
-        to start sending newsletters!
+        <LinkTo @route="members">Añadir miembros</LinkTo>
+        para comenzar a enviar boletines!
     </p>
 {{else if (not @publishOptions.mailgunIsConfigured)}}
     <p class="gh-box gh-content-box" data-test-publish-type-error="no-mailgun">
-        Set up <a href="https://ghost.org/docs/newsletters/#bulk-email-configuration" target="_blank" rel="noreferrer noopener">Mailgun</a> to start sending newsletters!
+        Configura <a href="https://ghost.org/docs/newsletters/#bulk-email-configuration" target="_blank" rel="noreferrer noopener">Mailgun</a> para comenzar a enviar boletines!
     </p>
 {{/if}}

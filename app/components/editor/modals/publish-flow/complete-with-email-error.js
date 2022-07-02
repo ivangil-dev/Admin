@@ -54,13 +54,13 @@ export default class PublishFlowCompleteWithEmailError extends Component {
                 let errorMessage = '';
 
                 if (isServerUnreachableError(e)) {
-                    errorMessage = 'Unable to connect, please check your internet connection and try again.';
+                    errorMessage = 'No se puede conectar, consulta tu conexión a Internet y vuelve a intentarlo.';
                 } else if (e && isString(e)) {
                     errorMessage = e;
                 } else if (e?.payload?.errors?.[0].message) {
                     errorMessage = e.payload.errors[0].message;
                 } else {
-                    errorMessage = 'Unknown Error occurred when attempting to resend';
+                    errorMessage = 'Se produjo un error desconocido al intentar reenviar';
                 }
 
                 this.retryErrorMessage = htmlSafe(errorMessage);

@@ -1,13 +1,13 @@
 <div class="gh-publish-title" data-test-publish-flow="options">
-    <div class="green">Ready, set, publish.</div>
-    <div>Share it with the world.</div>
+    <div class="green">Preparados, listos, a publicar.</div>
+    <div>Compártelo con el mundo.</div>
 </div>
 <div class="gh-publish-settings">
     <div class="gh-publish-setting" data-test-setting="publish-type">
         {{#if @publishOptions.emailUnavailable}}
             <div class="gh-publish-setting-title" data-test-setting-title>
                 {{svg-jar "send-email"}}
-                <div class="gh-publish-setting-trigger">Publish on site</div>
+                <div class="gh-publish-setting-trigger">Publicar en la web</div>
             </div>
         {{else}}
             <button type="button" class="gh-publish-setting-title" {{on "click" (fn this.toggleSection "publishType")}} data-test-setting-title>
@@ -56,11 +56,11 @@
                                 {{gh-pluralize countFetcher.count "subscriber" without-count=true}}
 
                                 {{#unless @publishOptions.onlyDefaultNewsletter}}
-                                    of <span class="gh-selected-newsletter">{{@publishOptions.newsletter.name}}</span>
+                                    de <span class="gh-selected-newsletter">{{@publishOptions.newsletter.name}}</span>
                                 {{/unless}}
                             {{/let}}
                         {{else}}
-                            Not sent as newsletter
+                            No enviado como boletín
                         {{/if}}
                     </div>
                     <span class="{{if (eq this.openSection "emailRecipients") "expanded"}}">
@@ -75,7 +75,7 @@
                 >
                     {{svg-jar "member"}}
                     <div class="gh-publish-setting-trigger">
-                        Not sent as newsletter
+                        No enviado como boletín
                     </div>
                     <span>
                         {{svg-jar "arrow-down" class="icon-expand"}}
@@ -97,12 +97,12 @@
             <div class="gh-publish-setting-title disabled" data-test-setting-title>
                 {{svg-jar "member"}}
                 <div class="gh-publish-setting-trigger">
-                    Already sent to
+                    Ya enviado a
                     {{@publishOptions.post.email.emailCount}}
                     {{if (not-eq @recipientType "all") @recipientType}} {{!-- free/paid/specific --}}
                     {{gh-pluralize @publishOptions.post.email.emailCount "subscriber" without-count=true}}
                     {{#unless @publishOptions.onlyDefaultNewsletter}}
-                        of {{@publishOptions.post.newsletter.name}}
+                        de {{@publishOptions.post.newsletter.name}}
                     {{/unless}}
                 </div>
             </div>
@@ -117,7 +117,7 @@
                     {{#if @publishOptions.isScheduled}}
                         {{capitalize (gh-format-post-time @publishOptions.scheduledAtUTC draft=true)}}
                     {{else}}
-                        Right now
+                        Ahora mismo
                     {{/if}}
                 </span>
             </div>
@@ -138,6 +138,6 @@
 
 <div class="gh-publish-cta">
     <button type="button" class="gh-btn gh-btn-black gh-btn-large" {{on "click" @confirm}} data-test-button="continue">
-        <span>Continue, final review &rarr;</span>
+        <span>Continuar a la revisión final &rarr;</span>
     </button>
 </div>

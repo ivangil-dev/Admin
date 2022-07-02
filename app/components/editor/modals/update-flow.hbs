@@ -7,7 +7,7 @@
             {{#let @data.publishOptions.post as |post|}}
                 {{#if (not (and post.isSent (not post.isPublished)))}}
                     <button class="gh-btn gh-btn-editor darkgrey gh-publish-trigger active" title="Close" type="button" {{on "click" @close}}>
-                        <span>{{if post.isScheduled "Unschedule" "Unpublish"}}</span>
+                        <span>{{if post.isScheduled "Desprogramar" "Despublicar"}}</span>
                     </button>
                 {{/if}}
             {{/let}}
@@ -19,20 +19,20 @@
         <div class="gh-publish-settings-container gh-update-flow fade-in">
             <div class="gh-publish-title" data-test-update-flow-title>
                 {{#if (and post.isSent (not post.isPublished))}}
-                    This {{post.displayName}} was
-                    <span class="green">{{post.status}} by email</span>
+                    Esta publicación fué
+                    <span class="green">{{post.status}} por correo electrónico</span>
                 {{else}}
-                    This {{post.displayName}} has been
+                    Esta publicación ha sido
                     <span class="green">{{post.status}}</span>
                 {{/if}}
             </div>
 
             <div class="gh-publish-confirmation" data-test-update-flow-confirmation>
                 <p>
-                    Your
-                    {{post.displayName}}
+                    Tu
+                    publicación
 
-                    {{if post.isScheduled "will be" "was"}}
+                    {{if post.isScheduled "será" "fué"}}
 
                     {{#if
                         (or post.isSent
@@ -41,58 +41,58 @@
                         )
                     }}
                         {{#if post.emailOnly}}
-                            sent to
+                            enviada a
                         {{else}}
-                            published and sent to
+                            publicada y enviada a
                         {{/if}}
 
                         {{#if post.isScheduled}}
                             {{#let (members-count-fetcher query=(hash filter=post.fullRecipientFilter)) as |countFetcher|}}
                                 <strong>{{gh-pluralize countFetcher.count "subscriber"}}</strong>
-                                {{#if this.showNewsletterName}}of <strong>{{post.newsletter.name}}</strong>{{/if}}
+                                {{#if this.showNewsletterName}}de <strong>{{post.newsletter.name}}</strong>{{/if}}
                             {{/let}}
                         {{else}}
                             <strong>{{gh-pluralize post.email.emailCount "subscriber"}}</strong>
-                            {{#if this.showNewsletterName}}of <strong>{{post.newsletter.name}}</strong>{{/if}}
+                            {{#if this.showNewsletterName}}de <strong>{{post.newsletter.name}}</strong>{{/if}}
                         {{/if}}
                     {{else}}
-                        published on your site
+                        publicada en tu sitio
                     {{/if}}
 
                     {{#let (moment-site-tz post.publishedAtUTC) as |publishedAt|}}
-                        on
+                        en
                         {{moment-format publishedAt "D MMM YYYY"}}
-                        at
+                        a
                         {{moment-format publishedAt "HH:mm"}}.
                     {{/let}}
 
                     {{#if post.isScheduled}}
                         {{#if (and post.isScheduled post.email)}}
-                            This post was previously emailed to
+                            Esta publicación fue enviada previamente por correo electrónico a
 
                             <strong>{{pluralize post.email.emailCount "subscriber"}}</strong>
 
                             {{#if this.showNewsletterName}}
-                                of <strong>{{post.newsletter.name}}</strong>
+                                de <strong>{{post.newsletter.name}}</strong>
                             {{/if}}
 
                             {{#let (moment-site-tz post.email.createdAtUTC) as |sentAt|}}
-                                on
+                                en
                                 {{moment-format sentAt "D MMM YYYY"}}
-                                at
+                                a
                                 {{moment-format sentAt "HH:mm"}}.
                             {{/let}}
                         {{/if}}
 
                         <br><br>
-                        Need to make a change?
+                        ¿Necesitas hacer un cambio?
                         <button
                             type="button"
                             class="gh-revert-to-draft"
                             {{on "click" (fn @close (hash afterTask="revertToDraftTask"))}}
                             data-test-button="revert-to-draft"
                         >
-                            <span>Unschedule and revert to draft &rarr;</span>
+                            <span>Suprimir programación y convertir en borrador &rarr;</span>
                         </button>
                     {{else if (not post.emailOnly)}}
                         <br><br>
@@ -102,7 +102,7 @@
                             {{on "click" (fn @close (hash afterTask="revertToDraftTask"))}}
                             data-test-button="revert-to-draft"
                         >
-                            <span>Unpublish and revert to private draft &rarr;</span>
+                            <span>Retirar publicación y comvertir en borrador privado &rarr;</span>
                         </button>
                     {{/if}}
                 </p>
