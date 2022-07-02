@@ -13,10 +13,10 @@
             {{#unless @hideAuthor }}
                 <p>
                     <span class="gh-content-entry-meta">
-                        By <span class="midgrey-l2 fw5">{{post-author-names @post}}</span>
+                        Por <span class="midgrey-l2 fw5">{{post-author-names @post}}</span>
 
                         {{#if @post.primaryTag}}
-                            in <span class="midgrey-l2 fw5">{{@post.primaryTag.name}}</span>
+                            en <span class="midgrey-l2 fw5">{{@post.primaryTag.name}}</span>
                         {{/if}}
 
                         • <span data-tooltip="{{gh-format-post-time @post.updatedAtUTC "D MMM YYYY"}}">{{gh-format-post-time @post.updatedAtUTC draft=true}}</span>
@@ -33,10 +33,10 @@
             {{#unless @hideAuthor }}
                 <p>
                     <span class="gh-content-entry-meta">
-                        By <span class="midgrey-l2 fw5">{{post-author-names @post}}</span>
+                        Por <span class="midgrey-l2 fw5">{{post-author-names @post}}</span>
 
                         {{#if @post.primaryTag}}
-                            in <span class="midgrey-l2 fw5">{{@post.primaryTag.name}}</span>
+                            en <span class="midgrey-l2 fw5">{{@post.primaryTag.name}}</span>
                         {{/if}}
 
                         • <span data-tooltip="{{gh-format-post-time @post.updatedAtUTC "D MMM YYYY"}}">{{gh-format-post-time @post.updatedAtUTC draft=true}}</span>
@@ -83,7 +83,7 @@
                 <div class="flex items-center">
                     {{#if @post.isScheduled}}
                     <span class="gh-content-status-scheduled gh-badge nowrap" title="Scheduled" data-tooltip="{{capitalize this.scheduledText}} to {{@post.emailSegment}} members">
-                        Scheduled
+                        Programado
                         {{#if @post.newsletter}}
                         {{svg-jar "email-stroke"}}
                         {{/if}}
@@ -92,13 +92,13 @@
 
                     {{#if @post.isDraft}}
                     <span class="gh-content-status-draft gh-badge gh-badge-pink nowrap">
-                        Draft
+                        Borrador
                     </span>
                     {{/if}}
 
                     {{#if @post.isPublished}}
                     <span class="gh-content-status-published nowrap">
-                        Published
+                        Publicado
                         {{#if @post.hasEmail}}
                         {{svg-jar "email-stroke"}}
                         {{/if}}
@@ -117,7 +117,7 @@
                 <div class="flex items-center">
                     {{#if @post.isScheduled}}
                     <span class="gh-content-status-scheduled gh-badge nowrap" title="Scheduled" data-tooltip="{{capitalize this.scheduledText}} to {{@post.emailSegment}} members">
-                        Scheduled
+                        Programado
                         {{#if @post.newsletter}}
                         {{svg-jar "email-stroke"}}
                         {{/if}}
@@ -126,13 +126,13 @@
 
                     {{#if @post.isDraft}}
                     <span class="gh-content-status-draft gh-badge gh-badge-pink nowrap">
-                        Draft
+                        Borrador
                     </span>
                     {{/if}}
 
                     {{#if @post.isPublished}}
                     <span class="gh-content-status-published nowrap">
-                        Published
+                        Publicado
                         {{#if @post.hasEmail}}
                         {{svg-jar "email-stroke"}}
                         {{/if}}
