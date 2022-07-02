@@ -54,11 +54,11 @@
             <GhKoenigEditor
                 @title={{readonly this.post.titleScratch}}
                 @titleAutofocus={{this.shouldFocusTitle}}
-                @titlePlaceholder={{concat (capitalize this.post.displayName) " title"}}
+                @titlePlaceholder="Título del artículo"
                 @onTitleChange={{this.updateTitleScratch}}
                 @onTitleBlur={{perform this.saveTitleTask}}
                 @body={{readonly this.post.scratch}}
-                @bodyPlaceholder={{concat "Begin writing your " this.post.displayName "..."}}
+                @bodyPlaceholder="Empieza escribiendo tu publicación.."
                 @onBodyChange={{this.updateScratch}}
                 @headerOffset={{editor.headerHeight}}
                 @scrollContainerSelector=".gh-koenig-editor"
@@ -84,7 +84,7 @@
 
             <div class="gh-editor-wordcount-container">
                 <div class="gh-editor-wordcount">
-                    {{gh-pluralize this.wordCount.wordCount "word"}}
+                    {{gh-pluralize this.wordCount.wordCount "palabra"}}
                 </div>
                 <a href="https://ghost.org/help/using-the-editor/" class="flex" target="_blank" rel="noopener noreferrer">{{svg-jar "help"}}</a>
             </div>
@@ -101,7 +101,7 @@
         {{/if}}
     </div>
 
-    <button type="button" class="settings-menu-toggle gh-btn gh-btn-editor gh-btn-icon icon-only gh-btn-action-icon" title="Settings" {{on "click" this.toggleSettingsMenu}} data-test-psm-trigger>
+    <button type="button" class="settings-menu-toggle gh-btn gh-btn-editor gh-btn-icon icon-only gh-btn-action-icon" title="Opciones" {{on "click" this.toggleSettingsMenu}} data-test-psm-trigger>
         {{#if this.showSettingsMenu}}
             <span class="settings-menu-open">{{svg-jar "sidemenu-open"}}</span>
         {{else}}

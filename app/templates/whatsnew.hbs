@@ -1,10 +1,10 @@
 <section class="gh-canvas js-settings-content" {{scroll-top}}>
     <GhCanvasHeader class="gh-canvas-header">
-        <h2 class="gh-whats-new-heading">{{svg-jar "gift"}} What's new?</h2>
+        <h2 class="gh-whats-new-heading">{{svg-jar "gift"}} ¿Qué hay de nuevo?</h2>
         <div class="gh-about-header-actions">
-            <a class="gh-btn gh-btn-outline" href="https://ghost.org/docs/" target="_blank" rel="noopener noreferrer"><span>User documentation</span></a>
-            <a class="gh-btn gh-btn-outline" href="https://forum.ghost.org/" target="_blank" rel="noopener noreferrer"><span>Get help with Ghost</span></a>
-            <a class="gh-btn gh-btn-black" href="https://ghost.org/docs/contributing/" target="_blank" rel="noopener noreferrer"><span>Get involved</span></a>
+            <a class="gh-btn gh-btn-outline" href="https://ghost.org/docs/" target="_blank" rel="noopener noreferrer"><span>Documentación</span></a>
+            <a class="gh-btn gh-btn-outline" href="https://forum.ghost.org/" target="_blank" rel="noopener noreferrer"><span>Comunidad Ghost</span></a>
+            <a class="gh-btn gh-btn-black" href="mailto:soporte@ivangil.es" target="_blank" rel="noopener noreferrer"><span>Soporte técnico</span></a>
         </div>
     </GhCanvasHeader>
     <section class="view-container">
@@ -20,20 +20,20 @@
                         <div class="gh-wn-content">
                         {{#if entry.custom_excerpt}}
                             <p>{{entry.custom_excerpt}}</p>
-                            <a href={{entry.url}} class="dib fw6 mb6" target="_blank" rel="noopener noreferrer">Read the full post →</a>
+                            <a href={{entry.url}} class="dib fw6 mb6" target="_blank" rel="noopener noreferrer">Leer la publicación completa →</a>
                         {{else}}
                             {{{entry.html}}}
                         {{/if}}
                         </div>
                     </a>
                 {{/each}}
-                <a class="green" href="https://ghost.org/changelog" target="_blank" rel="noopener noreferrer">See all updates &rarr;</a>
+                <a class="green" href="https://ghost.org/changelog" target="_blank" rel="noopener noreferrer">Ver todas las actualizaciones &rarr;</a>
             </section>
 
             <div class="gh-about-content-actions">
                 <a class="gh-btn gh-btn-outline" href="https://ghost.org/docs/" target="_blank" rel="noopener noreferrer"><span>User documentation</span></a>
                 <a class="gh-btn gh-btn-outline" href="https://forum.ghost.org/" target="_blank" rel="noopener noreferrer"><span>Get help with Ghost</span></a>
-                <a class="gh-btn gh-btn-black" href="https://ghost.org/docs/contributing/" target="_blank" rel="noopener noreferrer"><span>Get involved</span></a>
+                <a class="gh-btn gh-btn-black" href="mailto:soporte@ivangil.es" target="_blank" rel="noopener noreferrer"><span>Soporte técnico</span></a>
             </div>
 
             <section class="gh-env-details gh-about-box grey">
@@ -44,27 +44,28 @@
                 {{#if this.upgradeStatus.message}}
                     <section class="gh-upgrade-notification">
                         <p>
-                            <strong>Update available!</strong> {{this.upgradeStatus.message}}
+                            <strong>Actualización disponible!</strong> {{this.upgradeStatus.message}}
                         </p>
                     </section>
                 {{/if}}
 
                 <ul class="gh-env-list">
-                    <li><strong>Version:</strong> {{this.config.version}}</li>
+                    <li><strong>Versión:</strong> {{this.config.version}}</li>
                     {{#if this.showSystemInfo}}
-                    <li><strong>Environment:</strong> <span class="ttc">{{this.config.environment}}</span></li>
+                    <li><strong>Entorno:</strong> <span class="ttc">{{this.config.environment}}</span></li>
+                    <li><strong>Programador asignado:</strong> Ivan Gil</li>
                     <li class="gh-env-list-database-type"><strong>Database:</strong> {{this.config.database}}</li>
-                    <li><strong>Mail:</strong> {{#if this.config.mail}}{{this.config.mail}}{{else}}Native{{/if}}</li>
+                    <li><strong>Email:</strong> {{#if this.config.mail}}{{this.config.mail}}{{else}}Native{{/if}}</li>
                     {{/if}}
                     {{#if (enable-developer-experiments)}}
-                    <li><strong>Developer experiments:</strong> <span class="gh-badge">Enabled</span></li>
+                    <li><strong>Experimentos de desarrollador:</strong> <span class="gh-badge">Activados</span></li>
                     {{/if}}
                 </ul>
 
                 {{#if (and this.showSystemInfo this.showDatabaseWarning)}}
                     <section class="gh-upgrade-notification">
                         <p>
-                            <strong>Warning:</strong> MySQL 8 will be the required database in the next major release of Ghost. Make sure your database is up to date to ensure forwards compatibility.
+                            <strong>Alerta:</strong> MySQL 8 será la base de datos necesaria en la próxima versión principal de Ghost. Asegúrate de que tu base de datos esté actualizada para garantizar la compatibilidad de los avances.
                         </p>
                     </section>
                 {{/if}}
