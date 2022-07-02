@@ -29,17 +29,17 @@
             {{#each uploader.errors as |error|}}
                 <div class="gh-setting-error" data-test-error="feature-image">
                     {{or error.context error.message}}
-                    <button type="button" class="ml2 b" {{on "click" uploader.cancel}}>Retry</button>
+                    <button type="button" class="ml2 b" {{on "click" uploader.cancel}}>Reintentar</button>
                 </div>
             {{/each}}
         {{else if @image}}
             {{!-- image is present --}}
-            <span class="gh-editor-feature-image-indicator" data-tooltip="A feature image is publicly visible to anyone">
+            <span class="gh-editor-feature-image-indicator" data-tooltip="Una imagen de portada es públicamente visible para cualquier persona">
                 {{svg-jar "feature-image"}}
             </span>
             <div class="gh-editor-feature-image">
                 <img src={{@image}}>
-                <button type="button" class="image-delete" title="Delete image" {{on "click" @clearImage}}>
+                <button type="button" class="image-delete" title="Eliminar imagen" {{on "click" @clearImage}}>
                     {{svg-jar "trash"}}
                 </button>
             </div>
@@ -47,7 +47,7 @@
                 {{#if this.isEditingAlt}}
                     <input
                         type="text"
-                        placeholder="Add alt text to the feature image"
+                        placeholder="Agregar texto alt a la imagen de portada"
                         class="gh-editor-feature-image-alttext"
                         name="alt"
                         value={{@alt}}
@@ -57,7 +57,7 @@
                 {{else}}
                     <KoenigBasicHtmlInput
                         @html={{@caption}}
-                        @placeholder={{if this.captionInputFocused "" "Add a caption to the feature image"}}
+                        @placeholder={{if this.captionInputFocused "" "Agregar un título a la imagen de portada"}}
                         @class="gh-editor-feature-image-caption"
                         @name="caption"
                         @onChange={{@updateCaption}}
@@ -66,7 +66,7 @@
                     />
                 {{/if}}
                 <button
-                    title="Toggle between editing alt text and caption"
+                    title="Alternar entre editar texto alternativo (ALT) y título"
                     class="h-100 pl1 pr1 ba br3 f8 sans-serif fw4 lh-title tracked-2 {{if this.isEditingAlt "bg-green b--green white" "bg-white b--midlightgrey midlightgrey"}}" type="button" {{on "click" this.toggleAltEditing passive=true}}
                 >
                     Alt
@@ -76,9 +76,9 @@
             {{!-- no-image state --}}
             <div class="flex flex-row items-center {{if this.hideButton "invisible"}}">
                 {{#if this.canDrop}}
-                    <div class="gh-editor-feature-image-add-button"><span>Drop to upload feature image</span></div>
+                    <div class="gh-editor-feature-image-add-button"><span>Arrastrar y soltar para cargar imagen de portada</span></div>
                 {{else}}
-                    <button type="button" class="gh-editor-feature-image-add-button" {{on "click" uploader.triggerFileDialog}}>{{svg-jar "plus"}}<span>Add feature image</span></button>
+                    <button type="button" class="gh-editor-feature-image-add-button" {{on "click" uploader.triggerFileDialog}}>{{svg-jar "plus"}}<span>Añadir imagen de portada</span></button>
                     {{#if this.settings.unsplash}}
                         <button type="button" class="gh-editor-feature-image-unsplash" {{on "click" this.toggleUnsplashSelector}}>{{svg-jar "unsplash"}}</button>
                     {{/if}}

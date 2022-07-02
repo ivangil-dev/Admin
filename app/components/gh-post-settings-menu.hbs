@@ -6,21 +6,21 @@
     <div id="entry-controls">
         <div class="settings-menu settings-menu-pane settings-menu-pane-main">
             <div class="settings-menu-header">
-                <h4>{{capitalize this.post.displayName}} settings</h4>
+                <h4>Opciones del artículo</h4>
             </div>
             <div class="settings-menu-content">
                 <form>
                 <div class="form-group">
-                    <label for="url">{{capitalize this.post.displayName}} URL</label>
+                    <label for="url">URL Pública</label>
                     {{!-- new posts don't have a preview link --}}
                     {{#unless this.post.isNew}}
                         {{#if (or this.post.isPublished this.post.isSent)}}
                         <a class="post-view-link" target="_blank" href="{{this.post.url}}" rel="noopener noreferrer">
-                            View {{this.post.displayName}} {{svg-jar "external"}}
+                            Ver artículo {{svg-jar "external"}}
                         </a>
                         {{else if this.post.isScheduled}}
                         <a class="post-view-link" target="_blank" href="{{this.post.previewUrl}}" rel="noopener noreferrer">
-                            Preview {{svg-jar "external"}}
+                            Vista previa {{svg-jar "external"}}
                         </a>
                         {{/if}}
                     {{/unless}}
@@ -45,9 +45,9 @@
 
                 <div class="form-group">
                     {{#if (or this.post.isDraft this.post.isPublished this.post.pastScheduledTime this.post.isSent)}}
-                        <label>Publish date</label>
+                        <label>Fecha de publicación</label>
                     {{else}}
-                        <label>Scheduled date</label>
+                        <label>Fecha programada</label>
                     {{/if}}
                     <GhDateTimePicker
                         @date={{this.post.publishedAtBlogDate}}
@@ -62,20 +62,20 @@
                         @isActive={{not this.isViewingSubview}}
                     />
                     {{#unless (or this.post.isDraft this.post.isPublished this.post.pastScheduledTime this.post.isSent)}}
-                    <p>Use the publish menu to re-schedule</p>
+                    <p>Use el botón PUBLICAR para volver a programar el artículo</p>
                     {{/unless}}
                 </div>
 
                 {{#unless this.session.user.isContributor}}
                 <div class="form-group">
-                    <label for="tag-input">Tags</label>
+                    <label for="tag-input">Etiquetas</label>
                     <GhPsmTagsInput @post={{this.post}} @triggerId="tag-input" />
                 </div>
                 {{/unless}}
 
                 {{#if this.showVisibilityInput}}
                     <GhFormGroup @errors={{this.post.errors}} @hasValidated={{this.post.hasValidated}} @property="visibility">
-                        <label for="visibility-input">{{capitalize @post.displayName}} access</label>
+                        <label for="visibility-input">Acceso al artículo</label>
                         <GhPsmVisibilityInput @post={{this.post}} @triggerId="visibility-input" />
                     </GhFormGroup>
 
@@ -94,7 +94,7 @@
 
 
                 <GhFormGroup @errors={{this.post.errors}} @hasValidated={{this.post.hasValidated}} @property="customExcerpt">
-                    <label for="custom-excerpt">Excerpt</label>
+                    <label for="custom-excerpt">Texto abreviado (Excerpt)</label>
                     <GhTextarea
                         @class="post-setting-custom-excerpt"
                         @id="custom-excerpt"
@@ -110,7 +110,7 @@
 
                 {{#unless this.session.user.isAuthorOrContributor}}
                     <GhFormGroup @class="for-select" @errors={{this.post.errors}} @hasValidated={{this.post.hasValidated}} @property="authors" data-test-input="authors">
-                        <label for="author-list">Authors</label>
+                        <label for="author-list">Autores</label>
                         <GhPsmAuthorsInput @selectedAuthors={{this.post.authors}} @updateAuthors={{action "changeAuthors"}} @triggerId="author-list" />
                         <GhErrorMessage @errors={{this.post.errors}} @property="authors" data-test-error="authors" />
                     </GhFormGroup>
@@ -119,38 +119,38 @@
                 <ul class="nav-list nav-list-block">
                     <li class="nav-list-item">
                         <button type="button" {{action "showSubview" "meta-data"}} data-test-button="meta-data">
-                            <b>Meta data</b>
-                            <span>Extra content for search engines</span>
+                            <b>Meta datos</b>
+                            <span>Información extra para buscadores y redes sociales</span>
                         </button>
                         {{svg-jar "arrow-right"}}
                     </li>
                     <li class="nav-list-item">
                         <button type="button"  {{action "showSubview" "twitter-data"}} data-test-button="twitter-data">
-                            <b>Twitter card</b>
-                            <span>Customize structured data for Twitter</span>
+                            <b>Tarjeta de twitter</b>
+                            <span>Personalizar datos estructurados para Twitter</span>
                         </button>
                         {{svg-jar "arrow-right"}}
                     </li>
                     <li class="nav-list-item">
                         <button type="button" {{action "showSubview" "facebook-data"}} data-test-button="facebook-data">
-                            <b>Facebook card</b>
-                            <span>Customize Open Graph data</span>
+                            <b>Tarjeta de Facebook</b>
+                            <span>Personalizar Open Graph Data</span>
                         </button>
                         {{svg-jar "arrow-right"}}
                     </li>
                     {{#if (and this.post.isPost this.showEmailNewsletter (not-eq this.settings.membersSignupAccess "none") (not-eq this.settings.editorDefaultEmailRecipients "disabled"))}}
                         <li class="nav-list-item">
                             <button type="button" {{action "showSubview" "email-settings"}} data-test-button="email-settings">
-                                <b>Email newsletter</b>
-                                <span>Customize email settings</span>
+                                <b>Boletín electrónico</b>
+                                <span>Personalizar la configuración de correo electrónico</span>
                             </button>
                             {{svg-jar "arrow-right"}}
                         </li>
                     {{/if}}
                     <li class="nav-list-item">
                         <button type="button" {{action "showSubview" "codeinjection"}} data-test-button="codeinjection">
-                            <b>Code injection</b>
-                            <span>Add styles/scripts to the header &amp; footer</span>
+                            <b>Inyectar código</b>
+                            <span>Agregar estilos/scripts al encabezado y/o el pié</span>
                         </button>
                         {{svg-jar "arrow-right"}}
                     </li>
@@ -167,7 +167,7 @@
                             data-test-checkbox="featured"
                         >
                         <span class="input-toggle-component"></span>
-                        <p>Feature this {{this.post.displayName}}</p>
+                        <p>Destacar este artículo</p>
                     </label>
                 </div>
                 {{/unless}}
@@ -177,7 +177,7 @@
                     @onTemplateSelect={{action (mut this.post.customTemplate)}} />
 
                 {{#unless this.post.isNew}}
-                    <button type="button" class="gh-btn gh-btn-hover-red gh-btn-icon settings-menu-delete-button" {{action "deletePostInternal"}}><span>{{svg-jar "trash"}} Delete {{this.post.displayName}}</span></button>
+                    <button type="button" class="gh-btn gh-btn-hover-red gh-btn-icon settings-menu-delete-button" {{action "deletePostInternal"}}><span>{{svg-jar "trash"}} Borrar publicación</span></button>
                 {{/unless}}
 
                 </form>
@@ -189,8 +189,8 @@
             <div class="active">
                     {{#if (eq this.subview "meta-data")}}
                         <div class="settings-menu-header subview">
-                            <button aria-label="Back" class="back settings-menu-header-action" data-test-button="close-psm-subview" type="button" {{action "closeSubview"}}>{{svg-jar "arrow-left"}}<span class="hidden">Back</span></button>
-                            <h4>Meta data</h4>
+                            <button aria-label="Atrás" class="back settings-menu-header-action" data-test-button="close-psm-subview" type="button" {{action "closeSubview"}}>{{svg-jar "arrow-left"}}<span class="hidden">Atrás</span></button>
+                            <h4>Meta datos</h4>
                             <div style="width:23px;"></div>
                         </div>
 

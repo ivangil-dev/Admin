@@ -6,44 +6,44 @@ import {alias} from '@ember/object/computed';
 import {inject as service} from '@ember/service';
 
 const TYPES = [{
-    name: 'All posts',
+    name: 'Todos los artículos',
     value: null
 }, {
-    name: 'Draft posts',
+    name: 'Borradores',
     value: 'draft'
 }, {
-    name: 'Published posts',
+    name: 'Publicados',
     value: 'published'
 }, {
-    name: 'Scheduled posts',
+    name: 'Programados',
     value: 'scheduled'
 }, {
-    name: 'Featured posts',
+    name: 'Destacados',
     value: 'featured'
 }];
 
 const VISIBILITIES = [{
-    name: 'All access',
+    name: 'Todos los permisos',
     value: null
 }, {
-    name: 'Public',
+    name: 'Públicos',
     value: 'public'
 }, {
-    name: 'Members-only',
+    name: 'Solo suscriptores',
     value: 'members'
 }, {
-    name: 'Paid members-only',
+    name: 'Solo usuarios de pago',
     value: 'paid'
 }];
 
 const ORDERS = [{
-    name: 'Newest',
+    name: 'Más nuevos',
     value: null
 }, {
-    name: 'Oldest',
+    name: 'Más antiguos',
     value: 'published_at asc'
 }, {
-    name: 'Recently updated',
+    name: 'Recientemente actualizados',
     value: 'updated_at desc'
 }];
 
@@ -74,7 +74,7 @@ export default class PostsController extends Controller {
 
         if (this.feature.get('emailAnalytics') && !this.availableOrders.findBy('name', 'Open rate')) {
             this.availableOrders.push({
-                name: 'Open rate',
+                name: 'Tasa de apertura',
                 value: 'email.open_rate desc'
             });
         }
@@ -119,7 +119,7 @@ export default class PostsController extends Controller {
             .filter(tag => tag.get('id') !== null)
             .sort((tagA, tagB) => tagA.name.localeCompare(tagB.name, undefined, {ignorePunctuation: true}));
         let options = tags.toArray();
-        options.unshiftObject({name: 'All tags', slug: null});
+        options.unshiftObject({name: 'Todas las etiquetas', slug: null});
 
         return options;
     }
@@ -142,7 +142,7 @@ export default class PostsController extends Controller {
         let authors = this._availableAuthors;
         let options = authors.toArray();
 
-        options.unshiftObject({name: 'All authors', slug: null});
+        options.unshiftObject({name: 'Todos los autores', slug: null});
 
         return options;
     }
