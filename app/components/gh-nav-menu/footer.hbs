@@ -23,11 +23,11 @@
                             </div>
                         </li>
                         <li class="divider" role="separator"></li>
-                        
+
                         {{#if this.session.user.isContributor}}
                             <li>
                                 <LinkTo @route="posts" @query={{hash entry=null}} class="dropdown-item" @role="menuitem" tabindex="-1" data-test-nav="posts">
-                                    Posts
+                                    Publicaciones
                                 </LinkTo>
                             </li>
                             <li>
@@ -37,7 +37,7 @@
                         {{else}}
                             <li>
                                 <LinkTo @route="whatsnew" @query={{hash entry=null}} class="dropdown-item" @role="menuitem" tabindex="-1" data-test-nav="whatsnew">
-                                    What's new?
+                                    Novedades
                                     {{#if this.whatsNew.hasNew}}
                                         <div class="flex-grow-1 flex justify-end"><span class="dib w2 h2 top-0 right-0 bg-green br-100"></span></div>
                                     {{/if}}
@@ -47,20 +47,20 @@
 
                         <li>
                             <LinkTo @route="settings.staff.user" @model={{this.session.user.slug}} class="dropdown-item" @role="menuitem" tabindex="-1" data-test-nav="user-profile">
-                                Your profile
+                                Tu perfil
                             </LinkTo>
                         </li>
-                        
+
                         {{#unless this.session.user.isContributor}}
                             <li class="divider" role="separator"></li>
                             <li>
                                 <a class="dropdown-item" role="menuitem" tabindex="-1" href="https://ghost.org/help?utm_source=admin&utm_campaign=help" target="_blank" rel="noopener noreferrer">
-                                    Help center
+                                    Centro de ayuda
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" role="menuitem" tabindex="-1" href="https://ghost.org/resources?utm_source=admin&utm_campaign=resources" target="_blank" rel="noopener noreferrer">
-                                    Resources & guides
+                                    Recursos y guias
                                 </a>
                             </li>
 
@@ -82,7 +82,7 @@
 
                         <li>
                             <LinkTo @route="signout" class="dropdown-item user-menu-signout" @role="menuitem" tabindex="-1">
-                                Sign out
+                                Cerrar sesión
                             </LinkTo>
                         </li>
                     </ul>
