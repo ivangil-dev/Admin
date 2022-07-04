@@ -33,7 +33,7 @@
                     <div class="gh-list-header gh-posts-title-header">Título</div>
                         {{#if (and (not-eq this.settings.membersSignupAccess "none") (not-eq this.settings.editorDefaultEmailRecipients "disabled") (not this.session.user.isContributor) this.feature.emailAnalytics)}}
                             <div class="gh-list-header gh-posts-sends-header">Enviados</div>
-                            <div class="gh-list-header gh-posts-opens-header">Abierto en email</div>
+                            <div class="gh-list-header gh-posts-opens-header">Emails abiertos</div>
                         {{/if}}
                     <div class="gh-list-header gh-posts-status-header">Estado</div>
                 </li>

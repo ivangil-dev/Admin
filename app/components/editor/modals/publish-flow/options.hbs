@@ -43,7 +43,7 @@
                         {{#if @publishOptions.recipientFilter}}
                             {{#let (members-count-fetcher query=(hash filter=@publishOptions.fullRecipientFilter)) as |countFetcher|}}
                                 {{#if (or (gt countFetcher.count 1) (is-empty countFetcher.count))}}
-                                    {{if (eq @recipientType "all") "All"}}
+                                    {{if (eq @recipientType "all") "Todos"}}
                                 {{/if}}
 
                                 {{format-number countFetcher.count}}
@@ -53,7 +53,7 @@
                                     {{if (is-empty countFetcher.count) (capitalize @recipientType) @recipientType}}
                                 {{/if}}
 
-                                {{gh-pluralize countFetcher.count "subscriber" without-count=true}}
+                                {{gh-pluralize countFetcher.count "usuarios" without-count=true}}
 
                                 {{#unless @publishOptions.onlyDefaultNewsletter}}
                                     de <span class="gh-selected-newsletter">{{@publishOptions.newsletter.name}}</span>

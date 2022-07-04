@@ -197,7 +197,7 @@
                         <div class="settings-menu-content">
                             <form {{action "discardEnter" on="submit"}}>
                                 <GhFormGroup @errors={{this.post.errors}} @hasValidated={{this.post.hasValidated}} @property="metaTitle">
-                                    <label for="meta-title">Meta title</label>
+                                    <label for="meta-title">Meta título</label>
                                     <GhTextInput
                                         @class="post-setting-meta-title"
                                         @id="meta-title"
@@ -208,7 +208,7 @@
                                         @focus-out={{action "setMetaTitle" this.metaTitleScratch}}
                                         @stopEnterKeyDownPropagation={{true}}
                                         data-test-field="meta-title" />
-                                    <p>Recommended: <b>60</b> characters. You’ve used {{gh-count-down-characters this.metaTitleScratch 60}}</p>
+                                    <p>Recomendado: <b>60</b> caracteres. Has usado {{gh-count-down-characters this.metaTitleScratch 60}}</p>
                                     <GhErrorMessage @errors={{this.post.errors}} @property="meta-title" />
                                 </GhFormGroup>
 
@@ -224,12 +224,12 @@
                                         @focus-out={{action "setMetaDescription" this.metaDescriptionScratch}}
                                         @stopEnterKeyDownPropagation="true"
                                         data-test-field="meta-description" />
-                                    <p>Recommended: <b>145</b> characters. You’ve used {{gh-count-down-characters this.metaDescriptionScratch 145}}</p>
+                                    <p>Recomendado: <b>145</b> caracteres. Has usado {{gh-count-down-characters this.metaDescriptionScratch 145}}</p>
                                     <GhErrorMessage @errors={{this.post.errors}} @property="meta-description" />
                                 </GhFormGroup>
 
                                 <GhFormGroup @errors={{this.post.errors}} @hasValidated={{this.post.hasValidated}} @property="canonicalUrl">
-                                    <label for="canonicalUrl">Canonical URL</label>
+                                    <label for="canonicalUrl">URL Canónica</label>
                                     <GhTextInput
                                         @class="post-setting-canonicalUrl"
                                         @name="post-setting-canonicalUrl"
@@ -242,7 +242,7 @@
                                 </GhFormGroup>
 
                                 <div class="form-group">
-                                    <label>Search Engine Result Preview</label>
+                                    <label>Apariencia en el navegador (Vista Previa)</label>
                                     <div class="gh-seo-container">
                                         <div class="gh-seo-preview">
                                             <div class="flex mb7">
@@ -261,8 +261,8 @@
 
                     {{#if (eq this.subview "twitter-data")}}
                         <div class="settings-menu-header subview">
-                            <button aria-label="Back" class="back settings-menu-header-action" data-test-button="close-psm-subview" type="button" {{action "closeSubview"}}>{{svg-jar "arrow-left"}}<span class="hidden">Back</span></button>
-                            <h4>Twitter card</h4>
+                            <button aria-label="Back" class="back settings-menu-header-action" data-test-button="close-psm-subview" type="button" {{action "closeSubview"}}>{{svg-jar "arrow-left"}}<span class="hidden">Atrás</span></button>
+                            <h4>Tarjeta de twitter</h4>
                             <div style="width:23px;"></div>
                         </div>
 
@@ -277,7 +277,7 @@
                                     @remove={{action "clearTwitterImage"}}
                                 />
                                 <GhFormGroup @errors={{this.post.errors}} @hasValidated={{this.post.hasValidated}} @property="twitterTitle">
-                                    <label for="twitter-title">Twitter title</label>
+                                    <label for="twitter-title">Título de Twitter</label>
                                     <GhTextInput
                                         @class="post-setting-twitter-title"
                                         @id="twitter-title"
